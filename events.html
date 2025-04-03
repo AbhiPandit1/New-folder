@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Events</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    />
+    <link rel="stylesheet" href="./assests/css/index.css" />
+  </head>
+  <style>
+    .icons ul li a {
+      color: black;
+    }
+
+    .icons ul li a:hover {
+      background: linear-gradient(to right, #ff5733, #ff6f61, #ffb300, #ffc107);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+
+  <body>
+    <div class="events Small shadow">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+        <div class="container">
+          <a
+            class="navbar-brand fw-bold text-uppercase text-white"
+            href="./index.html"
+          >
+            <span
+              class="logo-text"
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+              "
+              >SportiVision</span
+            >
+          </a>
+
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav gap-4">
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="./index.html"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="#"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="./events.html"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >Events</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="d-flex align-items-center gap-4">
+            <a href="#" class="text-white position-relative">
+              <i class="bi bi-cart" style="font-size: 1.8rem; color: white"></i>
+              <span
+                class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+                >3</span
+              >
+            </a>
+            <a
+              href="#"
+              class="text-white fw-bold"
+              style="
+                font-size: 1.2rem;
+                font-family: 'Poppins', sans-serif;
+                color: white;
+              "
+              >John Doe</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <!-- Navbar Styling -->
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        .navbar-nav .nav-link {
+          transition: color 0.3s ease-in-out;
+          position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+          color: #ffc107 !important;
+        }
+
+        .navbar-nav .nav-link::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: -5px;
+          width: 0;
+          height: 2px;
+          background-color: #ffc107;
+          transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+          width: 100%;
+          left: 0;
+        }
+
+        .navbar-toggler {
+          background-color: #ffc107;
+          padding: 5px 10px;
+          border-radius: 5px;
+        }
+
+        .badge {
+          font-size: 0.75rem;
+          padding: 5px;
+        }
+
+        @media (max-width: 991px) {
+          .navbar-nav {
+            text-align: left;
+            padding-left: 15px;
+          }
+        }
+      </style>
+    </div>
+    <div class="banner-area home-banner1">
+      <!-- Single Banner Section -->
+      <div
+        class="banner-bg"
+        style="background-image: url(./assests/images/banner-2.jpg)"
+      >
+        <div class="container">
+          <div class="row h-100vh">
+            <div
+              class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+            >
+              <div class="banner-inner">
+                <p data-animation-in="fadeInLeft">
+                  Growing up in Michigan, I was lucky enough to<br />
+                  experience one part of the Great Lakes.
+                </p>
+                <h1 class="title1" data-animation-in="fadeInDown">Biking</h1>
+                <h1 class="title2" data-animation-in="fadeInUp">Mountain</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- scroll down -->
+      <div class="scroll">
+        <a href="#about-area">
+          <div class="scroll-btn"><span class="inside-bg"></span></div>
+        </a>
+        <span>Scroll to explore</span>
+      </div>
+    </div>
+
+    <div class="home-blog event-card">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+            <div class="card rounded-0 border-0 layout_3--item">
+              <img
+                class="card-img-top rounded-0"
+                src="./assests/images/event.webp"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <div class="select-menu my-2">
+                  <label for="#">Select Quality:</label>
+                  <select
+                    class="form-select form-select-sm"
+                    aria-label=".form-select-sm example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="photographer-name pt-1">
+                  <span>Photographer:</span> <span>Denis</span>
+                </div>
+                <div class="text-center">
+                  <button
+                    type="button"
+                    class="btn btn-danger btn-sm mt-3 mb-2 w-100"
+                  >
+                    BUY NOW
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer
+      class="footer-area footer-style-2"
+      style="background-color: #222; color: #fff; padding: 50px 0"
+    >
+      <div class="container">
+        <div class="row">
+          <!-- Logo Section -->
+          <div class="col-lg-4 col-md-6 text-center text-md-left">
+            <div class="footer-widget">
+              <div class="logo-container">
+                <div
+                  class="logo-text"
+                  style="
+                    font-size: 32px;
+                    font-weight: 700;
+                    color: #ff5c5c;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                  "
+                >
+                  SportiVision
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Links Section -->
+          <div class="col-lg-4 col-md-6 text-center text-md-left">
+            <div class="footer-widget widget_nav_menu">
+              <h4
+                style="
+                  font-size: 20px;
+                  font-weight: 600;
+                  color: #fff;
+                  margin-bottom: 20px;
+                "
+              >
+                Quick Links
+              </h4>
+              <ul style="list-style: none; padding: 0">
+                <li style="margin-bottom: 12px">
+                  <a
+                    href="./index.html"
+                    class="nav-link"
+                    style="
+                      color: #bbb;
+                      text-decoration: none;
+                      font-size: 16px;
+                      transition: color 0.3s;
+                    "
+                    >Home</a
+                  >
+                </li>
+                <li style="margin-bottom: 12px">
+                  <a
+                    href="./events.html"
+                    class="nav-link"
+                    style="
+                      color: #bbb;
+                      text-decoration: none;
+                      font-size: 16px;
+                      transition: color 0.3s;
+                    "
+                    >Events</a
+                  >
+                </li>
+                <li style="margin-bottom: 12px">
+                  <a
+                    href="#"
+                    class="nav-link"
+                    style="
+                      color: #bbb;
+                      text-decoration: none;
+                      font-size: 16px;
+                      transition: color 0.3s;
+                    "
+                    >Shop</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Social Media Icons Section -->
+          <div class="col-lg-4 col-md-12 text-center">
+            <div class="footer-widget widget icons">
+              <h4
+                style="
+                  font-size: 20px;
+                  font-weight: 600;
+                  color: #fff;
+                  margin-bottom: 20px;
+                "
+              >
+                Follow Us
+              </h4>
+              <ul
+                style="
+                  display: flex;
+                  justify-content: center;
+                  padding: 0;
+                  list-style: none;
+                "
+              >
+                <li style="margin-right: 15px">
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                </li>
+                <li style="margin-right: 15px">
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                </li>
+                <li style="margin-right: 15px">
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-youtube"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Section -->
+      <div
+        class="copyright-area"
+        style="background-color: #222; padding: 20px 0; text-align: center"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div
+                class="copyright-area-inner"
+                style="color: #bbb; font-size: 14px"
+              >
+                &copy; <span id="year"></span> SportiVision. All rights
+                reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Added jQuery required for Slick -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Added Slick slider JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

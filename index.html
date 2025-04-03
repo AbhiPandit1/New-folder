@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SportiVision</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    />
+    <link rel="stylesheet" href="./assests/css/index.css" />
+    <link rel="stylesheet" href="./assests/css/pricing.css" />
+  </head>
+  <style>
+    .icons ul li a {
+      color: black;
+    }
+
+    .icons ul li a:hover {
+      background: linear-gradient(to right, #ff5733, #ff6f61, #ffb300, #ffc107);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+
+  <body>
+    <div class="main">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+        <div class="container">
+          <a
+            class="navbar-brand fw-bold text-uppercase text-white"
+            href="./index.html"
+          >
+            <span
+              class="logo-text"
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+              "
+              >SportiVision</span
+            >
+          </a>
+
+          <button
+            class="navbar-toggler border-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav gap-4">
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="./index.html"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="#"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >About</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="./events.html"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >Events</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="d-flex align-items-center gap-4">
+            <a href="#" class="text-white position-relative">
+              <i class="bi bi-cart" style="font-size: 1.8rem"></i>
+              <span
+                class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+                >3</span
+              >
+            </a>
+            <a
+              href="#"
+              class="text-white fw-bold"
+              style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+              >John Doe</a
+            >
+          </div>
+        </div>
+      </nav>
+
+      <!-- Navbar Styling -->
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        .navbar-nav .nav-link {
+          transition: color 0.3s ease-in-out;
+          position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+          color: #ffc107 !important;
+        }
+
+        .navbar-nav .nav-link::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: -5px;
+          width: 0;
+          height: 2px;
+          background-color: #ffc107;
+          transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+          width: 100%;
+          left: 0;
+        }
+
+        .navbar-toggler {
+          background-color: #ffc107;
+          padding: 5px 10px;
+          border-radius: 5px;
+        }
+
+        .badge {
+          font-size: 0.75rem;
+          padding: 5px;
+        }
+
+        @media (max-width: 991px) {
+          .navbar-nav {
+            text-align: left;
+            padding-left: 15px;
+          }
+        }
+      </style>
+
+      <div class="banner-area home-banner1">
+        <div class="banner-slider banner-slider1">
+          <div
+            class="banner-bg"
+            style="background-image: url(./assests/images/banner-2.jpg)"
+          >
+            <div class="container">
+              <div class="row h-100vh">
+                <div
+                  class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+                >
+                  <div class="banner-inner">
+                    <p data-animation-in="fadeInLeft">
+                      Growing up in Michigan, I was lucky enough to<br />
+                      experience one part of the Great Lakes.
+                    </p>
+                    <h1 class="title1" data-animation-in="fadeInDown">
+                      Biking
+                    </h1>
+                    <h1 class="title2" data-animation-in="fadeInUp">
+                      Mountain
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="banner-bg"
+            style="background-image: url(./assests/images/banner-1.jpg)"
+          >
+            <div class="container">
+              <div class="row h-100vh">
+                <div
+                  class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+                >
+                  <div class="banner-inner">
+                    <p data-animation-in="fadeInLeft">
+                      Riding Is A Way To Explore<br />
+                      A Way To Explore Nature And The World.
+                    </p>
+                    <h1 class="title1" data-animation-in="fadeInDown">
+                      Denver
+                    </h1>
+                    <h1 class="title2" data-animation-in="fadeInUp">
+                      Have Fun
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="banner-bg"
+            style="background-image: url(./assests/images/banner-5.jpg)"
+          >
+            <div class="container">
+              <div class="row h-100vh">
+                <div
+                  class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+                >
+                  <div class="banner-inner">
+                    <p data-animation-in="fadeInLeft">
+                      Growing up in Michigan, I was lucky enough to<br />
+                      experience one part of the Great Lakes.
+                    </p>
+                    <h1 class="title1" data-animation-in="fadeInDown">
+                      Biking
+                    </h1>
+                    <h1 class="title2" data-animation-in="fadeInUp">
+                      Feel good
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="banner-bg"
+            style="background-image: url(./assests/images/banner-1.jpg)"
+          >
+            <div class="container">
+              <div class="row h-100vh">
+                <div
+                  class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+                >
+                  <div class="banner-inner">
+                    <p data-animation-in="fadeInLeft">
+                      Life is like riding<br />
+                      you must keep moving
+                    </p>
+                    <h1 class="title1" data-animation-in="fadeInDown">Honk</h1>
+                    <h1 class="title2" data-animation-in="fadeInUp">
+                      Mountain
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="banner-bg"
+            style="background-image: url(./assests/images/banner-5.jpg)"
+          >
+            <div class="container">
+              <div class="row h-100vh">
+                <div
+                  class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+                >
+                  <div class="banner-inner">
+                    <p data-animation-in="fadeInLeft">
+                      Nothing compares<br />
+                      the simple pleasure of a bike ride
+                    </p>
+                    <h1 class="title1" data-animation-in="fadeInDown">
+                      Denver
+                    </h1>
+                    <h1 class="title2" data-animation-in="fadeInUp">
+                      Feel good
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- scroll down -->
+        <div class="scroll">
+          <a href="#about-area">
+            <div class="scroll-btn"><span class="inside-bg"></span></div>
+          </a>
+          <span>Scroll to explore</span>
+        </div>
+        <div class="banner-sm-slider"></div>
+        <div class="slick-carousel-buttons">
+          <div class="mid">
+            <button class="prev">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button class="next">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about-area" class="container mt-4">
+      <div class="container">
+        <div class="row justify-content-center align-items-center mb-4">
+          <div class="col-12 event-header mt-4 mb-3 text-center text-md-start">
+            <h1 class="event-title">🔍 Recherche ton événement !</h1>
+          </div>
+        </div>
+
+        <form action="{% url 'event_list' %}" method="GET" class="event-form">
+          <div class="row justify-content-center align-items-center g-3">
+            <!-- Date Input -->
+            <div class="col-12 col-md-3">
+              <input
+                class="form-control event-input"
+                type="date"
+                name="date"
+                id="date"
+              />
+            </div>
+
+            <!-- Select Dropdown -->
+            <div class="col-12 col-md-3">
+              <select class="form-select event-select">
+                <option selected disabled>📍 Sélectionne un lieu</option>
+                <option value="1">Paris</option>
+                <option value="2">Lyon</option>
+                <option value="3">Marseille</option>
+              </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="col-12 col-md-3">
+              <button type="submit" class="btn event-btn w-100">
+                🔎 Rechercher
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <style>
+        /* General Styling */
+        .event-header {
+          text-align: center;
+        }
+
+        .event-title {
+          font-size: 2rem;
+          font-weight: bold;
+          color: #2c3e50;
+        }
+
+        /* Form Styling */
+        .event-form {
+          background: #f8f9fa;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input Fields */
+        .event-input,
+        .event-select {
+          padding: 12px;
+          font-size: 1rem;
+          border: 2px solid #ced4da;
+          border-radius: 8px;
+          transition: 0.3s ease-in-out;
+        }
+
+        .event-input:focus,
+        .event-select:focus {
+          border-color: #007bff;
+          box-shadow: 0px 0px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Button Styling */
+        .event-btn {
+          background: #007bff;
+          color: white;
+          font-size: 1rem;
+          font-weight: bold;
+          padding: 12px;
+          border-radius: 8px;
+          transition: all 0.3s ease-in-out;
+        }
+
+        .event-btn:hover {
+          background: #0056b3;
+          transform: translateY(-2px);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+          .event-title {
+            font-size: 1.8rem;
+          }
+
+          .event-form {
+            padding: 15px;
+          }
+
+          .event-btn {
+            font-size: 0.9rem;
+          }
+        }
+      </style>
+
+      <div class="home-blog">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+              <div class="card rounded-0 border-0 layout_3--item">
+                <img
+                  class="card-img-top rounded-0"
+                  src="./assests/images/banner-5.jpg"
+                  alt="Card image cap"
+                />
+                <div class="card-body">
+                  <h4>
+                    <a href="./post_page_01.html"
+                      >Yelp Is Now Marking That Sue Reviewers</a
+                    >
+                  </h4>
+                  <div class="meta">
+                    <span class="author">by Katie F.</span
+                    ><span class="date">Sep. 25, 2016</span
+                    ><span class="views">728</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button class="load-more" id="loadMoreBtn">Load More</button>
+      </div>
+    </section>
+
+    <section class="plan_container">
+      <div class="plan_container_hero">
+        <h1 class="plan_container_hero__title">Simple, transparent pricing</h1>
+        <p class="plan_container_hero__subtitle">
+          No contracts. No surprise fees.
+        </p>
+      </div>
+      <div class="plan_container_item_wrapper">
+        <!-- Free Plan -->
+        <div class="plan_container_item plan_container_item--free border">
+          <div class="plan_container_card">
+            <div class="plan_container_card__header">
+              <div
+                class="plan_container_card__icon plan_container_symbol plan_container_symbol--rounded"
+              ></div>
+              <h2>Free</h2>
+            </div>
+            <div class="plan_container_card__desc">
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            </div>
+          </div>
+          <div class="plan_container_price">$0<span>/ month</span></div>
+          <ul class="plan_container_feature_list">
+            <li>2 links</li>
+            <li>Own analytics platform</li>
+            <li>Chat support</li>
+            <li class="disabled">Mobile application</li>
+            <li class="disabled">Unlimited users</li>
+          </ul>
+          <button class="plan_container_button plan_container_button--free">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="plan_container_item plan_container_item--pro border">
+          <div class="plan_container_card">
+            <div class="plan_container_card__header">
+              <div
+                class="plan_container_card__icon plan_container_symbol"
+              ></div>
+              <h2>Pro</h2>
+              <div class="plan_container_label">Best Value</div>
+            </div>
+            <div class="plan_container_card__desc">
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            </div>
+          </div>
+          <div class="plan_container_price">$18<span>/ month</span></div>
+          <ul class="plan_container_feature_list">
+            <li>2 links</li>
+            <li>Own analytics platform</li>
+            <li>Chat support</li>
+            <li class="disabled">Mobile application</li>
+            <li class="disabled">Unlimited users</li>
+          </ul>
+          <button class="plan_container_button plan_container_button--pro">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="plan_container_item plan_container_item--enterprise border">
+          <div class="plan_container_card">
+            <div class="plan_container_card__header">
+              <div
+                class="plan_container_card__icon plan_container_symbol plan_container_symbol--rounded"
+              ></div>
+              <h2>Enterprise</h2>
+            </div>
+            <div class="plan_container_card__desc">
+              Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+            </div>
+          </div>
+          <div class="plan_container_price">Let's Talk</div>
+          <ul class="plan_container_feature_list">
+            <li>2 links</li>
+            <li>Own analytics platform</li>
+            <li>Chat support</li>
+            <li>Mobile application</li>
+            <li>Unlimited users</li>
+            <li>Customize Panel</li>
+          </ul>
+          <button
+            class="plan_container_button plan_container_button--enterprise"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .plan_container {
+        padding: 100px 35px;
+        background-color: #f1f7fc;
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        margin-top: 40px;
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3); /* White shadow */
+      }
+
+      .plan_container_hero {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+
+      .plan_container_hero__title {
+        font-size: 2.6rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      .plan_container_hero__subtitle {
+        font-size: 1.1rem;
+        color: #777;
+      }
+
+      .plan_container_item_wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .plan_container_item {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        padding: 20px;
+        border: 1px solid #f1f4f7;
+      }
+
+      .plan_container_item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .plan_container_card {
+        padding: 20px;
+      }
+
+      .plan_container_card__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .plan_container_card__icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #4c6ef5;
+        margin-right: 20px;
+      }
+
+      .plan_container_card__desc {
+        color: #555;
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+      }
+
+      .plan_container_price {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .plan_container_price span {
+        font-size: 1rem;
+        color: #777;
+      }
+
+      .plan_container_feature_list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 20px;
+      }
+
+      .plan_container_feature_list li {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 12px;
+      }
+
+      .plan_container_feature_list .disabled {
+        color: #ccc;
+        text-decoration: line-through;
+      }
+
+      .plan_container_button {
+        background-color: #4c6ef5;
+        color: #fff;
+        border: none;
+        padding: 14px;
+        width: 100%;
+        font-size: 1.1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .plan_container_button:hover {
+        background-color: #3a5bdc;
+      }
+
+      .plan_container_button--free {
+        background-color: #7bcf7b;
+      }
+
+      .plan_container_button--free:hover {
+        background-color: #6ba86b;
+      }
+
+      .plan_container_button--pro {
+        background-color: #ff9f00;
+      }
+
+      .plan_container_button--pro:hover {
+        background-color: #e88a00;
+      }
+
+      .plan_container_button--enterprise {
+        background-color: #e04646;
+      }
+
+      .plan_container_button--enterprise:hover {
+        background-color: #d13636;
+      }
+
+      .plan_container_label {
+        background-color: #ff5722;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .plan_container_hero__title {
+          font-size: 2rem;
+        }
+
+        .plan_container_hero__subtitle {
+          font-size: 1rem;
+        }
+
+        .plan_container_item_wrapper {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+
+    <!-- Section end -->
+
+    <section class="mt-5">
+      <div class="home-about" id="about-area">
+        <div class="container">
+          <div class="row">
+            <div class="about-title about-title-1">About Us</div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="about-image about-image-1">
+                <img src="./assests/images/about.webp" alt="About" />
+                <div class="overlay-content">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+                  sit amet semper augue. Maecenas gravida tortor sit amet enim
+                  venenatis tristique. Nulla vehicula porta tortor non maximus.
+                  Vestibulum ante ipsum primis in faucibus orci luctus et
+                  ultrices posuere cubilia Curae; Aliquam eu viverra augue
+                </div>
+                <span></span>
+              </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 faqs-section">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button
+                      class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Accordion Item #1 <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse show"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <strong>This is the first item's accordion body.</strong>
+                      It is shown by default, until the collapse plugin adds the
+                      appropriate classes that we use to style each element.
+                      These classes control the overall appearance, as well as
+                      the showing and hiding via CSS transitions. You can modify
+                      any of this with custom CSS or overriding our default
+                      variables. It's also worth noting that just about any HTML
+                      can go within the <code>.accordion-body</code>, though the
+                      transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      Accordion Item #2 <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <strong>This is the second item's accordion body.</strong>
+                      It is hidden by default, until the collapse plugin adds
+                      the appropriate classes that we use to style each element.
+                      These classes control the overall appearance, as well as
+                      the showing and hiding via CSS transitions. You can modify
+                      any of this with custom CSS or overriding our default
+                      variables. It's also worth noting that just about any HTML
+                      can go within the <code>.accordion-body</code>, though the
+                      transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      Accordion Item #3 <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <strong>This is the third item's accordion body.</strong>
+                      It is hidden by default, until the collapse plugin adds
+                      the appropriate classes that we use to style each element.
+                      These classes control the overall appearance, as well as
+                      the showing and hiding via CSS transitions. You can modify
+                      any of this with custom CSS or overriding our default
+                      variables. It's also worth noting that just about any HTML
+                      can go within the <code>.accordion-body</code>, though the
+                      transition does limit overflow.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <style>
+      .home-about {
+        padding: 60px 0;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-title-1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .about-image-1 {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .about-image-1 img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .about-image-1:hover img {
+        transform: scale(1.05);
+      }
+
+      .overlay-content {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1rem;
+        line-height: 1.5;
+        max-width: 80%;
+        transition: opacity 0.3s ease;
+        opacity: 0;
+      }
+
+      .about-image-1:hover .overlay-content {
+        opacity: 1;
+      }
+
+      .faqs-section .accordion-button {
+        background-color: #f7f7f7;
+        border: 1px solid #ddd;
+        color: #333;
+        font-weight: 600;
+        padding: 12px;
+        text-transform: uppercase;
+        border-radius: 5px;
+      }
+
+      .faqs-section .accordion-button:focus {
+        box-shadow: none;
+      }
+
+      .faqs-section .accordion-item {
+        margin-bottom: 20px;
+      }
+
+      .accordion-body {
+        background-color: #fff;
+        font-size: 1rem;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .accordion-button i {
+        margin-left: auto;
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-button.collapsed i {
+        transform: rotate(180deg);
+      }
+
+      @media (max-width: 768px) {
+        .home-about {
+          padding: 40px 15px;
+        }
+
+        .about-title-1 {
+          font-size: 2rem;
+        }
+
+        .about-image-1 img {
+          height: 250px;
+        }
+
+        .overlay-content {
+          bottom: 10px;
+          left: 10px;
+          font-size: 0.9rem;
+          max-width: 90%;
+        }
+      }
+    </style>
+
+    <!--Section end -->
+
+    <section class="home-contact">
+      <div
+        class="contact-title"
+        style="text-align: center; margin-bottom: 40px"
+      >
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+          "
+        >
+          <!-- Icon on the left -->
+          <i
+            class="fa fa-paper-plane"
+            style="font-size: 30px; color: #ff5c5c; margin-right: 20px"
+          ></i>
+          <!-- Heading -->
+          <h2 style="font-size: 36px; color: #333; margin: 0; font-weight: 600">
+            Get in Touch
+          </h2>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center"></div>
+        </div>
+        <div class="row contact-row">
+          <div class="col-lg-12">
+            <div
+              class="contact-right"
+              style="
+                padding: 40px;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Light shadow for a soft effect */
+                max-width: 700px;
+                margin: 40px auto; /* Added margin for spacing */
+              "
+            >
+              <form
+                class="contact-form"
+                action=""
+                name="registration"
+                novalidate="novalidate"
+              >
+                <div class="form-field margin-bottom-30">
+                  <input
+                    name="firstname"
+                    id="name"
+                    type="text"
+                    placeholder="Your Name"
+                    class="input-form"
+                    style="
+                      width: 100%;
+                      padding: 15px;
+                      border: 1px solid #444;
+                      border-radius: 8px;
+
+                      font-size: 16px;
+                      margin-bottom: 20px;
+                      transition: all 0.3s ease;
+                    "
+                  />
+                </div>
+                <div class="form-field margin-bottom-30">
+                  <input
+                    id="email"
+                    type="email"
+                    placeholder="Your Email"
+                    class="input-form"
+                    style="
+                      width: 100%;
+                      padding: 15px;
+                      border: 1px solid #444;
+                      border-radius: 8px;
+
+                      font-size: 16px;
+                      margin-bottom: 20px;
+                      transition: all 0.3s ease;
+                    "
+                  />
+                </div>
+                <div class="form-field margin-bottom-30">
+                  <input
+                    name="subject"
+                    id="subject"
+                    type="text"
+                    placeholder="Subject"
+                    class="input-form"
+                    style="
+                      width: 100%;
+                      padding: 15px;
+                      border: 1px solid #444;
+                      border-radius: 8px;
+
+                      font-size: 16px;
+                      margin-bottom: 20px;
+                      transition: all 0.3s ease;
+                    "
+                  />
+                </div>
+                <div class="form-field margin-bottom-30">
+                  <textarea
+                    name="message"
+                    id="thought"
+                    rows="5"
+                    placeholder="Message"
+                    style="
+                      width: 100%;
+                      padding: 15px;
+                      border: 1px solid #444;
+                      border-radius: 8px;
+
+                      font-size: 16px;
+                      margin-bottom: 20px;
+                      transition: all 0.3s ease;
+                    "
+                  ></textarea>
+                </div>
+                <div class="btn-wrapper" style="text-align: center">
+                  <button
+                    type="submit"
+                    class="form-submit"
+                    style="
+                      background-color: #ff5c5c;
+                      color: #fff;
+                      padding: 15px 40px;
+                      border: none;
+                      border-radius: 8px;
+                      font-size: 18px;
+                      cursor: pointer;
+                      transition: all 0.3s ease;
+                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for button */
+                    "
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="footer-area footer-style-2"
+      style="background-color: #222; color: #fff; padding: 50px 0"
+    >
+      <div class="container">
+        <div class="row">
+          <!-- Logo Section -->
+          <div class="col-lg-4 col-md-6 text-center text-md-left">
+            <div class="footer-widget">
+              <div class="logo-container">
+                <div
+                  class="logo-text"
+                  style="
+                    font-size: 32px;
+                    font-weight: 700;
+                    color: #ff5c5c;
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                  "
+                >
+                  SportiVision
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Links Section -->
+          <div class="col-lg-4 col-md-6 text-center text-md-left">
+            <div class="footer-widget widget_nav_menu">
+              <h4
+                style="
+                  font-size: 20px;
+                  font-weight: 600;
+                  color: #fff;
+                  margin-bottom: 20px;
+                "
+              >
+                Quick Links
+              </h4>
+              <ul style="list-style: none; padding: 0">
+                <li style="margin-bottom: 12px">
+                  <a
+                    href="./index.html"
+                    class="nav-link"
+                    style="
+                      color: #bbb;
+                      text-decoration: none;
+                      font-size: 16px;
+                      transition: color 0.3s;
+                    "
+                    >Home</a
+                  >
+                </li>
+                <li style="margin-bottom: 12px">
+                  <a
+                    href="./events.html"
+                    class="nav-link"
+                    style="
+                      color: #bbb;
+                      text-decoration: none;
+                      font-size: 16px;
+                      transition: color 0.3s;
+                    "
+                    >Events</a
+                  >
+                </li>
+                <li style="margin-bottom: 12px">
+                  <a
+                    href="#"
+                    class="nav-link"
+                    style="
+                      color: #bbb;
+                      text-decoration: none;
+                      font-size: 16px;
+                      transition: color 0.3s;
+                    "
+                    >Shop</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Social Media Icons Section -->
+          <div class="col-lg-4 col-md-12 text-center">
+            <div class="footer-widget widget icons">
+              <h4
+                style="
+                  font-size: 20px;
+                  font-weight: 600;
+                  color: #fff;
+                  margin-bottom: 20px;
+                "
+              >
+                Follow Us
+              </h4>
+              <ul
+                style="
+                  display: flex;
+                  justify-content: center;
+                  padding: 0;
+                  list-style: none;
+                "
+              >
+                <li style="margin-right: 15px">
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                </li>
+                <li style="margin-right: 15px">
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-twitter"></i
+                  ></a>
+                </li>
+                <li style="margin-right: 15px">
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    target="_blank"
+                    style="
+                      color: #fff;
+                      font-size: 28px;
+                      transition: color 0.3s;
+                      display: inline-block;
+                    "
+                    ><i class="fab fa-youtube"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Section -->
+      <div
+        class="copyright-area"
+        style="background-color: #222; padding: 20px 0; text-align: center"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div
+                class="copyright-area-inner"
+                style="color: #bbb; font-size: 14px"
+              >
+                &copy; <span id="year"></span> SportiVision. All rights
+                reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Auto update the year in the copyright section
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Added jQuery required for Slick -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Added Slick slider JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      $(document).ready(function () {
+        $('.banner-slider').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+          fade: true,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          asNavFor: '.banner-sm-slider',
+          infinite: true,
+        });
+
+        $('.banner-sm-slider').slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          asNavFor: '.banner-slider',
+          dots: false,
+          centerMode: true,
+          focusOnSelect: true,
+          arrows: false,
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 3,
+              },
+            },
+          ],
+        });
+
+        $('.banner-slider').on(
+          'beforeChange',
+          function (event, slick, currentSlide, nextSlide) {
+            $('.active-controler').text(pad(nextSlide + 1, 2));
+
+            var progress = ((nextSlide + 1) / slick.slideCount) * 100;
+            $('.home-slider-progress-active').css('width', progress + '%');
+
+            $('.slick-current')
+              .find('[data-animation-in]')
+              .each(function () {
+                var animationClass = $(this).attr('data-animation-in');
+                $(this).removeClass(animationClass);
+              });
+          }
+        );
+
+        $('.banner-slider').on(
+          'afterChange',
+          function (event, slick, currentSlide) {
+            $('.slick-current')
+              .find('[data-animation-in]')
+              .each(function () {
+                var animationClass = $(this).attr('data-animation-in');
+                $(this).addClass(animationClass);
+              });
+          }
+        );
+
+        var totalSlides = $('.banner-slider').slick('getSlick').slideCount;
+        $('.total-controler').text(pad(totalSlides, 2));
+
+        $('.active-controler').text('01');
+
+        setTimeout(function () {
+          $('.slick-current')
+            .find('[data-animation-in]')
+            .each(function () {
+              var animationClass = $(this).attr('data-animation-in');
+              $(this).addClass(animationClass);
+            });
+        }, 100);
+
+        function pad(num, size) {
+          var s = '000000000' + num;
+          return s.substr(s.length - size);
+        }
+
+        $('.btn').on('mouseenter', function (e) {
+          var parentOffset = $(this).offset(),
+            relX = e.pageX - parentOffset.left,
+            relY = e.pageY - parentOffset.top;
+          $(this).find('span').css({
+            top: relY,
+            left: relX,
+          });
+        });
+        $('.slick-carousel-buttons .prev').on('click', function () {
+          $('.banner-slider').slick('slickPrev');
+        });
+
+        $('.slick-carousel-buttons .next').on('click', function () {
+          $('.banner-slider').slick('slickNext');
+        });
+
+        $('.scroll a').on('click', function (e) {
+          e.preventDefault();
+          $('html, body').animate(
+            {
+              scrollTop: window.innerHeight,
+            },
+            800
+          );
+        });
+
+        document.querySelectorAll('.content-bottom').forEach((card) => {
+          card.addEventListener('mouseenter', function () {
+            document
+              .querySelectorAll('.content-bottom')
+              .forEach((otherCard) => {
+                otherCard.classList.remove('active');
+              });
+
+            this.classList.add('active');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

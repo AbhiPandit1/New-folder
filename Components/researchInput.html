@@ -1,0 +1,45 @@
+<!-- researchInput.html -->
+<section id="about-area" class="container mx-auto mt-10 px-4">
+  <!-- Header Section -->
+  <div class="text-center mb-8">
+    <h1 class="text-3xl sm:text-4xl font-bold text-[#2c3e50]">
+      🔍 Recherche ton événement !
+    </h1>
+  </div>
+
+  <!-- Form Section -->
+  <form
+    action="{% url 'event_list' %}"
+    method="GET"
+    class="bg-gray-100 p-4 sm:p-6 rounded-xl shadow-md"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Date Input -->
+      <input
+        type="date"
+        name="date"
+        id="date"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      <!-- Select Dropdown -->
+      <select
+        name="location"
+        class="w-full px-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option selected disabled>📍 Sélectionne un lieu</option>
+        <option value="1">Paris</option>
+        <option value="2">Lyon</option>
+        <option value="3">Marseille</option>
+      </select>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 transition-all text-white font-semibold py-3 rounded-lg"
+      >
+        🔎 Rechercher
+      </button>
+    </div>
+  </form>
+</section>

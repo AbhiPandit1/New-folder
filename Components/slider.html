@@ -1,0 +1,70 @@
+<!-- components/slider.html -->
+<div class="relative overflow-hidden" id="hero-section">
+  <div id="slider" class="relative h-[85vh]">
+    <!-- Slide 1 -->
+    <div
+      class="slide absolute inset-0 bg-cover bg-center flex items-center justify-center text-white opacity-100 transition-opacity duration-1000 h-[90vh]"
+      style="background-image: url('../assests/images/banner-1.jpg')"
+    >
+      <div class="absolute inset-0 bg-black/40 z-0"></div>
+      <div class="relative text-center space-y-2 px-4 z-10">
+        <p class="text-lg md:text-xl text-white font-medium">
+          Growing up in Michigan...
+        </p>
+        <h1
+          class="text-5xl md:text-6xl font-extrabold text-yellow-300 drop-shadow-lg"
+        >
+          Biking
+        </h1>
+        <h2 class="text-3xl md:text-4xl font-semibold text-accent">Mountain</h2>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div
+      class="slide absolute inset-0 bg-cover bg-center flex items-center justify-center text-white opacity-0 transition-opacity duration-1000 h-[90vh]"
+      style="background-image: url('../assests/images/banner-2.jpg')"
+    >
+      <div class="absolute inset-0 bg-black/40 z-0"></div>
+      <div class="relative text-center space-y-2 px-4 z-10">
+        <p class="text-lg md:text-xl text-white font-medium">
+          Riding Is A Way To Explore...
+        </p>
+        <h1
+          class="text-5xl md:text-6xl font-extrabold text-pink-400 drop-shadow-lg"
+        >
+          Denver
+        </h1>
+        <h2 class="text-3xl md:text-4xl font-semibold text-yellow-300">
+          Have Fun
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Button -->
+  <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+    <button
+      onclick="document.getElementById('next-section')?.scrollIntoView({ behavior: 'smooth' })"
+      class="bg-white text-black px-4 py-2 rounded-full shadow-lg hover:bg-gray-300 animate-bounce"
+    >
+      ↓ Scroll
+    </button>
+  </div>
+
+  <!-- Nav Buttons -->
+  <div class="absolute bottom-4 right-4 flex gap-4 z-20">
+    <button
+      id="prevBtn"
+      class="bg-white text-black p-2 rounded-full shadow hover:bg-gray-300"
+    >
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <button
+      id="nextBtn"
+      class="bg-white text-black p-2 rounded-full shadow hover:bg-gray-300"
+    >
+      <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+</div>

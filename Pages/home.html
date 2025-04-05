@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SportiVision - Home</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-...your-integrity..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Tailwind Custom Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+            },
+            colors: {
+              primary: '#1D4ED8',
+              accent: '#06b6d4',
+              dark: '#0f172a',
+              softDark: '#1e293b',
+              base: '#000000',
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .gsap-hidden {
+        display: none;
+      }
+      .nav-link {
+        @apply text-lg font-semibold text-white hover:text-accent transition duration-200;
+      }
+    </style>
+  </head>
+
+  <body class="bg-dark text-white font-poppins">
+    <!-- Navbar Component -->
+    <div id="navbar-container"></div>
+
+    <!-- Slider Component -->
+    <div id="slider-container"></div>
+
+    <!-- research-input-box Component -->
+    <div id="research-input"></div>
+
+    <!-- Blog Card Component-->
+
+    <div id="blog-card"></div>
+
+    <div id="price-card"></div>
+
+    <div id="about"></div>
+
+    <div id="contact"></div>
+
+    <div id="footer"></div>
+
+    <!-- Main Logic -->
+    <script src="./home.js"></script>
+  </body>
+</html>

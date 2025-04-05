@@ -1,0 +1,187 @@
+<div class="home-blog bg-[#0f172a] py-12 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Grid of Blog Cards -->
+    <div
+      id="blogGrid"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    >
+      <!-- Blog Card Template Start -->
+      <div
+        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      >
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h4
+            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
+          >
+            <a href="./post_page_01.html"
+              >Yelp Is Now Marking That Sue Reviewers</a
+            >
+          </h4>
+          <div class="text-sm text-gray-600 flex flex-col gap-1">
+            <span class="author">by Katie F.</span>
+            <span class="date">Sep. 25, 2016</span>
+            <span class="views">728 views</span>
+          </div>
+        </div>
+      </div>
+      <!-- Blog Card Template End -->
+
+      <!-- Duplicate cards... Add `blog-card` class to each -->
+      <!-- Example -->
+
+      <div
+        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      >
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h4
+            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
+          >
+            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
+          </h4>
+          <div class="text-sm text-gray-600 flex flex-col gap-1">
+            <span class="author">by John D.</span>
+            <span class="date">Oct. 1, 2016</span>
+            <span class="views">1.2K views</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      >
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h4
+            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
+          >
+            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
+          </h4>
+          <div class="text-sm text-gray-600 flex flex-col gap-1">
+            <span class="author">by John D.</span>
+            <span class="date">Oct. 1, 2016</span>
+            <span class="views">1.2K views</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      >
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h4
+            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
+          >
+            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
+          </h4>
+          <div class="text-sm text-gray-600 flex flex-col gap-1">
+            <span class="author">by John D.</span>
+            <span class="date">Oct. 1, 2016</span>
+            <span class="views">1.2K views</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      >
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h4
+            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
+          >
+            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
+          </h4>
+          <div class="text-sm text-gray-600 flex flex-col gap-1">
+            <span class="author">by John D.</span>
+            <span class="date">Oct. 1, 2016</span>
+            <span class="views">1.2K views</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      >
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover"
+        />
+        <div class="p-4">
+          <h4
+            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
+          >
+            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
+          </h4>
+          <div class="text-sm text-gray-600 flex flex-col gap-1">
+            <span class="author">by John D.</span>
+            <span class="date">Oct. 1, 2016</span>
+            <span class="views">1.2K views</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat the structure for more cards (with class="blog-card") -->
+    </div>
+
+    <!-- Load More Button -->
+    <div class="text-center mt-10">
+      <button
+        id="loadMoreBtn"
+        class="inline-block bg-black hover:bg-[#1e293b] text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-105 duration-300"
+      >
+        Load More
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Updated Load More Script -->
+<script>
+  const blogCards = document.querySelectorAll('.blog-card');
+  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  const initialVisible = 8;
+
+  blogCards.forEach((card, index) => {
+    if (index >= initialVisible) {
+      card.classList.add('hidden', 'opacity-0', 'translate-y-6');
+    }
+  });
+
+  loadMoreBtn.addEventListener('click', () => {
+    blogCards.forEach((card, index) => {
+      if (card.classList.contains('hidden')) {
+        setTimeout(() => {
+          card.classList.remove('hidden');
+          card.classList.add('transition-opacity', 'duration-500', 'ease-out');
+          card.classList.remove('opacity-0', 'translate-y-6');
+        }, index * 100); // Stagger each animation
+      }
+    });
+
+    // Hide button after all are shown
+    setTimeout(() => {
+      loadMoreBtn.style.display = 'none';
+    }, blogCards.length * 100);
+  });
+</script>

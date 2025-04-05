@@ -1,0 +1,174 @@
+<!-- components/navbar.html -->
+<nav class="bg-softDark py-4 shadow-lg relative z-50">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="#" class="text-2xl font-bold tracking-wide">
+      <span class="text-accent">SportiVision</span>
+    </a>
+
+    <!-- Hamburger -->
+    <button id="menu-btn" class="lg:hidden text-white text-3xl z-50">☰</button>
+
+    <!-- Mobile Menu -->
+    <div
+      id="menu"
+      class="gsap-hidden lg:flex lg:items-center lg:gap-6 flex-col lg:flex-row absolute lg:static top-[100%] left-0 w-full lg:w-auto bg-softDark lg:bg-transparent px-6 lg:px-0 py-6 lg:py-0 space-y-6 lg:space-y-0 transition-all duration-300"
+    >
+      <div
+        class="flex flex-col lg:flex-row lg:items-center lg:gap-6 text-center w-full"
+      >
+        <a href="#" class="nav-link hover:text-accent">Home</a>
+        <a href="#" class="nav-link hover:text-accent">About</a>
+        <a href="#" class="nav-link hover:text-accent">Events</a>
+      </div>
+
+      <hr class="lg:hidden border-gray-600 w-full my-4" />
+
+      <!-- Mobile User Info -->
+      <div class="flex justify-between items-center w-full px-2 lg:hidden">
+        <a href="#" class="relative">
+          <!-- Cart Icon -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3H19m-7 0a2 2 0 11-4 0m10 0a2 2 0 11-4 0"
+            />
+          </svg>
+          <span
+            class="absolute -top-2 -right-2 bg-red-600 text-xs text-white rounded-full w-5 h-5 flex items-center justify-center"
+            >3</span
+          >
+        </a>
+
+        <!-- User Dropdown Mobile -->
+        <div class="relative">
+          <button
+            id="user-btn-mobile"
+            class="text-white font-bold text-lg hover:text-primary flex items-center gap-1"
+          >
+            John Doe
+            <span>▼</span>
+          </button>
+          <div
+            id="dropdown-mobile"
+            class="absolute right-0 mt-2 bg-white text-gray-800 rounded-lg shadow-xl w-44 p-2 space-y-1 border border-gray-100 z-50 hidden transition-all duration-200 ease-out transform scale-95"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 rounded hover:bg-gray-100 transition"
+              >👤 Profile</a
+            >
+
+            <a
+              href="#"
+              class="block px-4 py-2 rounded hover:bg-red-100 text-red-600 transition"
+              >🚪 Sign Out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Icons & User -->
+    <div class="hidden lg:flex items-center gap-6">
+      <!-- Cart -->
+      <a href="#" class="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3H19m-7 0a2 2 0 11-4 0m10 0a2 2 0 11-4 0"
+          />
+        </svg>
+        <span
+          class="absolute -top-2 -right-2 bg-red-600 text-xs text-white rounded-full w-5 h-5 flex items-center justify-center"
+          >3</span
+        >
+      </a>
+
+      <!-- User Dropdown Desktop -->
+      <div class="relative">
+        <button
+          id="user-btn"
+          class="text-white font-bold text-lg hover:text-primary flex items-center gap-1"
+        >
+          John Doe
+          <span>▼</span>
+        </button>
+        <div
+          id="dropdown"
+          class="absolute right-0 mt-2 bg-white text-gray-800 rounded-lg shadow-xl w-44 p-2 space-y-1 border border-gray-100 z-50 hidden transition-all duration-200 ease-out transform scale-95"
+        >
+          <a
+            href="#"
+            class="block px-4 py-2 rounded hover:bg-gray-100 transition"
+            >👤 Profile</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 rounded hover:bg-red-100 text-red-600 transition"
+            >🚪 Sign Out</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-2 rounded hover:bg-gray-100 transition"
+            >📋 Dashboard</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Toggle dropdown on desktop
+  const userBtn = document.getElementById('user-btn');
+  const dropdown = document.getElementById('dropdown');
+  userBtn?.addEventListener('click', () => {
+    dropdown?.classList.toggle('hidden');
+    dropdown?.classList.toggle('scale-95');
+    dropdown?.classList.toggle('scale-100');
+  });
+
+  // Toggle dropdown on mobile
+  const userBtnMobile = document.getElementById('user-btn-mobile');
+  const dropdownMobile = document.getElementById('dropdown-mobile');
+  userBtnMobile?.addEventListener('click', () => {
+    dropdownMobile?.classList.toggle('hidden');
+    dropdownMobile?.classList.toggle('scale-95');
+    dropdownMobile?.classList.toggle('scale-100');
+  });
+
+  // Close dropdowns on outside click
+  document.addEventListener('click', (e) => {
+    if (!userBtn?.contains(e.target) && !dropdown?.contains(e.target)) {
+      dropdown?.classList.add('hidden');
+      dropdown?.classList.remove('scale-100');
+      dropdown?.classList.add('scale-95');
+    }
+
+    if (
+      !userBtnMobile?.contains(e.target) &&
+      !dropdownMobile?.contains(e.target)
+    ) {
+      dropdownMobile?.classList.add('hidden');
+      dropdownMobile?.classList.remove('scale-100');
+      dropdownMobile?.classList.add('scale-95');
+    }
+  });
+</script>

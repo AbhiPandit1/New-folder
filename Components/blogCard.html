@@ -1,147 +1,159 @@
 <div class="home-blog bg-[#0f172a] py-12 px-4">
   <div class="max-w-7xl mx-auto">
-    <!-- Grid of Blog Cards -->
     <div
       id="blogGrid"
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
     >
-      <!-- Blog Card Template Start -->
+      <!-- Blog Card Start -->
       <div
-        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+        class="blog-card group relative bg-[#0f172a] text-white rounded-xl overflow-hidden transform transition-all duration-700 hover:rotate-[4deg] hover:shadow-sm hover:shadow-orange-500 hover:scale-105 hover:z-20"
       >
+        <!-- Image -->
         <img
           src="../assests/images/banner-4.jpg"
           alt="Card Image"
-          class="w-full h-48 object-cover"
+          class="w-full h-48 object-cover rounded-t-xl"
         />
-        <div class="p-4">
-          <h4
-            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
-          >
-            <a href="./post_page_01.html"
-              >Yelp Is Now Marking That Sue Reviewers</a
+
+        <!-- Content Box -->
+        <div
+          class="relative p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-b-xl flex flex-col justify-between min-h-[230px]"
+        >
+          <!-- Blog Info -->
+          <div class="space-y-2">
+            <h4
+              class="text-lg font-bold text-white hover:underline transition-all"
             >
-          </h4>
-          <div class="text-sm text-gray-600 flex flex-col gap-1">
-            <span class="author">by Katie F.</span>
-            <span class="date">Sep. 25, 2016</span>
-            <span class="views">728 views</span>
+              <a href="./post_page_01.html">
+                Yelp Is Now Marking That Sue Reviewers
+              </a>
+            </h4>
+            <div class="text-sm text-gray-300">
+              <p class="mb-1">by <span class="font-medium">Katie F.</span></p>
+              <p>Sep. 25, 2016</p>
+            </div>
           </div>
-        </div>
-      </div>
-      <!-- Blog Card Template End -->
 
-      <!-- Duplicate cards... Add `blog-card` class to each -->
-      <!-- Example -->
+          <!-- Views Section -->
+          <div
+            class="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black text-xs font-semibold px-3 py-1 rounded-full shadow-md"
+          >
+            👁 728 views
+          </div>
+        </div>
+      </div>
+      <div
+        class="blog-card group relative bg-[#0f172a] text-white rounded-xl overflow-hidden transform transition-all duration-700 hover:rotate-[4deg] hover:shadow-sm hover:shadow-orange-500 hover:scale-105 hover:z-20"
+      >
+        <!-- Image -->
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover rounded-t-xl"
+        />
 
-      <div
-        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
-      >
-        <img
-          src="../assests/images/banner-4.jpg"
-          alt="Card Image"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-4">
-          <h4
-            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
-          >
-            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
-          </h4>
-          <div class="text-sm text-gray-600 flex flex-col gap-1">
-            <span class="author">by John D.</span>
-            <span class="date">Oct. 1, 2016</span>
-            <span class="views">1.2K views</span>
+        <!-- Content Box -->
+        <div
+          class="relative p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-b-xl flex flex-col justify-between min-h-[230px]"
+        >
+          <!-- Blog Info -->
+          <div class="space-y-2">
+            <h4
+              class="text-lg font-bold text-white hover:underline transition-all"
+            >
+              <a href="./post_page_01.html">
+                Yelp Is Now Marking That Sue Reviewers
+              </a>
+            </h4>
+            <div class="text-sm text-gray-300">
+              <p class="mb-1">by <span class="font-medium">Katie F.</span></p>
+              <p>Sep. 25, 2016</p>
+            </div>
           </div>
-        </div>
-      </div>
-      <div
-        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
-      >
-        <img
-          src="../assests/images/banner-4.jpg"
-          alt="Card Image"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-4">
-          <h4
-            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
-          >
-            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
-          </h4>
-          <div class="text-sm text-gray-600 flex flex-col gap-1">
-            <span class="author">by John D.</span>
-            <span class="date">Oct. 1, 2016</span>
-            <span class="views">1.2K views</span>
-          </div>
-        </div>
-      </div>
-      <div
-        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
-      >
-        <img
-          src="../assests/images/banner-4.jpg"
-          alt="Card Image"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-4">
-          <h4
-            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
-          >
-            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
-          </h4>
-          <div class="text-sm text-gray-600 flex flex-col gap-1">
-            <span class="author">by John D.</span>
-            <span class="date">Oct. 1, 2016</span>
-            <span class="views">1.2K views</span>
-          </div>
-        </div>
-      </div>
 
-      <div
-        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
-      >
-        <img
-          src="../assests/images/banner-4.jpg"
-          alt="Card Image"
-          class="w-full h-48 object-cover"
-        />
-        <div class="p-4">
-          <h4
-            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
+          <!-- Views Section -->
+          <div
+            class="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black text-xs font-semibold px-3 py-1 rounded-full shadow-md"
           >
-            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
-          </h4>
-          <div class="text-sm text-gray-600 flex flex-col gap-1">
-            <span class="author">by John D.</span>
-            <span class="date">Oct. 1, 2016</span>
-            <span class="views">1.2K views</span>
+            👁 728 views
           </div>
         </div>
       </div>
       <div
-        class="blog-card bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+        class="blog-card group relative bg-[#0f172a] text-white rounded-xl overflow-hidden transform transition-all duration-700 hover:rotate-[4deg] hover:shadow-sm hover:shadow-orange-500 hover:scale-105 hover:z-20"
       >
+        <!-- Image -->
         <img
           src="../assests/images/banner-4.jpg"
           alt="Card Image"
-          class="w-full h-48 object-cover"
+          class="w-full h-48 object-cover rounded-t-xl"
         />
-        <div class="p-4">
-          <h4
-            class="text-lg font-semibold text-[#000000] mb-2 hover:underline transition-all duration-200"
-          >
-            <a href="./post_page_02.html">Instagram Rolls Out New Features</a>
-          </h4>
-          <div class="text-sm text-gray-600 flex flex-col gap-1">
-            <span class="author">by John D.</span>
-            <span class="date">Oct. 1, 2016</span>
-            <span class="views">1.2K views</span>
-          </div>
-        </div>
-      </div>
 
-      <!-- Repeat the structure for more cards (with class="blog-card") -->
+        <!-- Content Box -->
+        <div
+          class="relative p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-b-xl flex flex-col justify-between min-h-[230px]"
+        >
+          <!-- Blog Info -->
+          <div class="space-y-2">
+            <h4
+              class="text-lg font-bold text-white hover:underline transition-all"
+            >
+              <a href="./post_page_01.html">
+                Yelp Is Now Marking That Sue Reviewers
+              </a>
+            </h4>
+            <div class="text-sm text-gray-300">
+              <p class="mb-1">by <span class="font-medium">Katie F.</span></p>
+              <p>Sep. 25, 2016</p>
+            </div>
+          </div>
+
+          <!-- Views Section -->
+          <div
+            class="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black text-xs font-semibold px-3 py-1 rounded-full shadow-md"
+          >
+            👁 728 views
+          </div>
+        </div>
+      </div>
+      <div
+        class="blog-card group relative bg-[#0f172a] text-white rounded-xl overflow-hidden transform transition-all duration-700 hover:rotate-[4deg] hover:shadow-sm hover:shadow-orange-500 hover:scale-105 hover:z-20"
+      >
+        <!-- Image -->
+        <img
+          src="../assests/images/banner-4.jpg"
+          alt="Card Image"
+          class="w-full h-48 object-cover rounded-t-xl"
+        />
+
+        <!-- Content Box -->
+        <div
+          class="relative p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-b-xl flex flex-col justify-between min-h-[230px]"
+        >
+          <!-- Blog Info -->
+          <div class="space-y-2">
+            <h4
+              class="text-lg font-bold text-white hover:underline transition-all"
+            >
+              <a href="./post_page_01.html">
+                Yelp Is Now Marking That Sue Reviewers
+              </a>
+            </h4>
+            <div class="text-sm text-gray-300">
+              <p class="mb-1">by <span class="font-medium">Katie F.</span></p>
+              <p>Sep. 25, 2016</p>
+            </div>
+          </div>
+
+          <!-- Views Section -->
+          <div
+            class="absolute bottom-4 left-4 bg-gradient-to-r from-orange-500 to-yellow-400 text-black text-xs font-semibold px-3 py-1 rounded-full shadow-md"
+          >
+            👁 728 views
+          </div>
+        </div>
+      </div>
+      <!-- Blog Card End -->
     </div>
 
     <!-- Load More Button -->
@@ -156,7 +168,7 @@
   </div>
 </div>
 
-<!-- Updated Load More Script -->
+<!-- Load More Script -->
 <script>
   const blogCards = document.querySelectorAll('.blog-card');
   const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -175,11 +187,10 @@
           card.classList.remove('hidden');
           card.classList.add('transition-opacity', 'duration-500', 'ease-out');
           card.classList.remove('opacity-0', 'translate-y-6');
-        }, index * 100); // Stagger each animation
+        }, index * 100);
       }
     });
 
-    // Hide button after all are shown
     setTimeout(() => {
       loadMoreBtn.style.display = 'none';
     }, blogCards.length * 100);

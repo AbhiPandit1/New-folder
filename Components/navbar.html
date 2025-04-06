@@ -1,9 +1,12 @@
 <!-- components/navbar.html -->
-<nav class="bg-softDark py-4 shadow-lg relative z-50">
+<nav class="bg-dark py-4 shadow-lg relative z-50">
   <div class="container mx-auto px-4 flex justify-between items-center">
     <!-- Logo -->
-    <a href="#" class="text-2xl font-bold tracking-wide">
-      <span class="text-accent">SportiVision</span>
+    <a
+      href="#"
+      class="text-2xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-[#ff5733] via-[#ff6f61] via-[#ffb300] to-[#ffc107]"
+    >
+      SportiVision
     </a>
 
     <!-- Hamburger -->
@@ -12,14 +15,27 @@
     <!-- Mobile Menu -->
     <div
       id="menu"
-      class="gsap-hidden lg:flex lg:items-center lg:gap-6 flex-col lg:flex-row absolute lg:static top-[100%] left-0 w-full lg:w-auto bg-softDark lg:bg-transparent px-6 lg:px-0 py-6 lg:py-0 space-y-6 lg:space-y-0 transition-all duration-300"
+      class="bg-dark gsap-hidden lg:flex lg:items-center lg:gap-6 flex-col lg:flex-row absolute lg:static top-[100%] left-0 w-full lg:w-auto px-6 lg:px-0 py-6 lg:py-0 space-y-6 lg:space-y-0 transition-all duration-300"
     >
       <div
         class="flex flex-col lg:flex-row lg:items-center lg:gap-6 text-center w-full"
       >
-        <a href="#" class="nav-link hover:text-accent">Home</a>
-        <a href="#" class="nav-link hover:text-accent">About</a>
-        <a href="#" class="nav-link hover:text-accent">Events</a>
+        <!-- Nav Links -->
+        <a
+          href="#"
+          class="nav-link relative text-white text-lg font-medium transition duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#ff5733] hover:via-[#ff6f61] hover:via-[#ffb300] hover:to-[#ffc107] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 hover:after:w-full after:bg-gradient-to-r after:from-[#ff5733] after:via-[#ff6f61] after:via-[#ffb300] after:to-[#ffc107] after:transition-all after:duration-300"
+          >Home</a
+        >
+        <a
+          href="#"
+          class="nav-link relative text-white text-lg font-medium transition duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#ff5733] hover:via-[#ff6f61] hover:via-[#ffb300] hover:to-[#ffc107] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 hover:after:w-full after:bg-gradient-to-r after:from-[#ff5733] after:via-[#ff6f61] after:via-[#ffb300] after:to-[#ffc107] after:transition-all after:duration-300"
+          >About</a
+        >
+        <a
+          href="#"
+          class="nav-link relative text-white text-lg font-medium transition duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#ff5733] hover:via-[#ff6f61] hover:via-[#ffb300] hover:to-[#ffc107] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 hover:after:w-full after:bg-gradient-to-r after:from-[#ff5733] after:via-[#ff6f61] after:via-[#ffb300] after:to-[#ffc107] after:transition-all after:duration-300"
+          >Events</a
+        >
       </div>
 
       <hr class="lg:hidden border-gray-600 w-full my-4" />
@@ -52,7 +68,7 @@
         <div class="relative">
           <button
             id="user-btn-mobile"
-            class="text-white font-bold text-lg hover:text-primary flex items-center gap-1"
+            class="text-white font-bold text-lg hover:text-white flex items-center gap-1"
           >
             John Doe
             <span>▼</span>
@@ -66,7 +82,6 @@
               class="block px-4 py-2 rounded hover:bg-gray-100 transition"
               >👤 Profile</a
             >
-
             <a
               href="#"
               class="block px-4 py-2 rounded hover:bg-red-100 text-red-600 transition"
@@ -105,7 +120,7 @@
       <div class="relative">
         <button
           id="user-btn"
-          class="text-white font-bold text-lg hover:text-primary flex items-center gap-1"
+          class="text-white font-bold text-lg hover:text-white flex items-center gap-1"
         >
           John Doe
           <span>▼</span>

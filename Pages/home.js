@@ -91,6 +91,7 @@ function initializeNavbarAndSlider() {
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.style.opacity = i === index ? '1' : '0';
+      slide.style.visibility = i === index ? 'visible' : 'hidden';
     });
   }
 

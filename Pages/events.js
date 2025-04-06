@@ -57,21 +57,18 @@ function initializeNavbarAndSlider() {
     });
   }
 
-  // Desktop dropdown
   const userBtn = document.getElementById('user-btn');
   const dropdown = document.getElementById('dropdown');
   userBtn?.addEventListener('click', () => {
     dropdown.classList.toggle('hidden');
   });
 
-  // Mobile dropdown
   const userBtnMobile = document.getElementById('user-btn-mobile');
   const dropdownMobile = document.getElementById('dropdown-mobile');
   userBtnMobile?.addEventListener('click', () => {
     dropdownMobile.classList.toggle('hidden');
   });
 
-  // Close dropdowns on outside click
   document.addEventListener('click', (e) => {
     if (!userBtn?.contains(e.target) && !dropdown?.contains(e.target)) {
       dropdown?.classList.add('hidden');
@@ -84,7 +81,6 @@ function initializeNavbarAndSlider() {
     }
   });
 
-  // Slider functionality
   const slides = document.querySelectorAll('.slide');
   let currentSlide = 0;
 
@@ -110,17 +106,12 @@ function initializeNavbarAndSlider() {
   }, 6000);
 }
 
-// Initial load
+// Initial load — Only load slider, blogCard, and footer
 window.addEventListener('DOMContentLoaded', async () => {
-  await loadComponent('navbar-container', '../components/navbar.html');
+  await loadComponent('navbar', '../components/navbar.html');
   await loadComponent('slider-container', '../components/slider.html');
-  await loadComponent('research-input', '../components/researchInput.html');
   await loadComponent('blog-card', '../components/blogCard.html');
-  await loadComponent('price-card', '../components/priceCard.html');
-  await loadComponent('about', '../components/about.html');
-  await loadComponent('contact', '../components/contact.html');
   await loadComponent('footer', '../components/footer.html');
 
-  // Delay init slightly to ensure HTML content is loaded
   setTimeout(initializeNavbarAndSlider, 200);
 });

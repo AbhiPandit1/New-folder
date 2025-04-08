@@ -106,12 +106,61 @@ function initializeNavbarAndSlider() {
   }, 6000);
 }
 
-// Initial load — Only load slider, blogCard, and footer
+// ✅ Logo rendering function
+function initializeLogoSection() {
+  const logos = [
+    'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+    'https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg',
+    'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+    'https://upload.wikimedia.org/wikipedia/commons/9/96/Sass_Logo_Color.svg',
+    'https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg',
+    'https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg',
+  ];
+
+  const logoContainer = document.getElementById('logoContainer');
+  if (!logoContainer) return;
+
+  const wrapper = document.createElement('div');
+  wrapper.className =
+    logos.length > 4
+      ? 'flex items-center space-x-20 animate-marquee relative z-20'
+      : 'flex flex-wrap justify-center items-center gap-10 relative z-20';
+
+  logos.forEach((logo) => {
+    const img = document.createElement('img');
+    img.src = logo;
+    img.alt = 'Logo';
+    img.className =
+      'h-24 w-24 object-contain bg-white p-2 rounded-full shadow-xl';
+    wrapper.appendChild(img);
+  });
+
+  logoContainer.appendChild(wrapper);
+}
+
+// ✅ Inject CSS for marquee animation
+const style = document.createElement('style');
+style.innerHTML = `
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-marquee {
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+`;
+document.head.appendChild(style);
+
+// ✅ DOM Ready: Load and Init
 window.addEventListener('DOMContentLoaded', async () => {
   await loadComponent('navbar', '../components/navbar.html');
-  await loadComponent('slider-container', '../components/slider.html');
+  await loadComponent('slider-container', '../components/eventPageMain.html');
   await loadComponent('blog-card', '../components/blogCard.html');
   await loadComponent('footer', '../components/footer.html');
 
-  setTimeout(initializeNavbarAndSlider, 200);
+  setTimeout(() => {
+    initializeNavbarAndSlider();
+    initializeLogoSection(); // 👈 Our new function
+  }, 200);
 });

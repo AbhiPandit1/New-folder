@@ -1,0 +1,34 @@
+<div class="relative w-full h-[80vh]">
+  <!-- Background Image -->
+  <img
+    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e"
+    alt="Background"
+    class="w-full h-full object-cover"
+  />
+
+  <!-- Gradient Overlay -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-blue-900 via-blue-800 to-transparent opacity-90"
+  ></div>
+
+  <!-- Logos (will be filled dynamically by JS) -->
+  <div id="logoContainer" class="absolute top-[60%] w-full px-8"></div>
+
+  <!-- Search Bar -->
+  <!-- Search Bar -->
+  <div class="absolute top-[80%] w-full px-8 z-30 flex justify-center">
+    <div class="relative w-full max-w-md">
+      <span
+        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+      >
+        🔍
+      </span>
+      <input
+        type="text"
+        placeholder="Search tour pictures..."
+        name="date"
+        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+  </div>
+</div>

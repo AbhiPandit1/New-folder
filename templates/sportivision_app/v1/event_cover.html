@@ -1,0 +1,44 @@
+{% load static %}
+{% block content %}
+<div class="main">
+
+    <!-- Event Banner -->
+    <div class="banner-area home-banner1">
+        <div class="banner-bg" style="background-image: url('{{ event.get_event_cover }}')">
+            <div class="container">
+                <div class="row h-100vh align-items-center">
+                    <div class="col-lg-10 col-md-12 mx-auto text-center">
+                        <div class="cover-inner">                           
+                            <h1 class="title1" data-animation-in="fadeInDown">{{ event.title }}</h1>
+                            <p data-animation-in="fadeInLeft" class="text-white">
+                                {{ event.location }} | {{ event.date }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sponsors Section -->
+    {% if sponsors %}
+    <div class="sponsor-section">
+        <!-- <div class="col-12 event-header text-center text-md-start">
+            <p class="event-title">Our Sponsors</p>
+        </div> -->
+        <div class="slider {% if sponsors|length < 1 %}center-mode{% endif %}">
+            <div class="slide-track">
+                {% for sponsor in sponsors %}
+                <div class="slide">
+                    <a href="{{ sponsor.website|default:'#' }}" target="_blank">
+                        <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

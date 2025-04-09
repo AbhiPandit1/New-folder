@@ -1,0 +1,91 @@
+
+{% extends "base.html" %}
+{% block main %}
+    {% include "main.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center align-items-center mb-4">
+    <div class="col-12 event-header mt-4 mb-3 text-center text-md-start">
+      <h1 class="event-title">{{ event.title }}</h1>
+    </div>
+  </div>
+  <div class="row justify-content-between event-form align-items-center">
+    <!-- Left Side: Photographer Filter Form -->
+    <div class="col-md-6">
+      <form method="get" action="{% url 'event_detail' event_id=event.id %}" >
+        <div class="d-flex align-items-center">
+          <!-- <label for="photographer" class="form-label  me-2">Photographer:</label> -->
+          <select name="photographer" id="photographer" class=" form-select event-select me-2">
+            <option value="">All Photographers</option>
+            {% for photographer in unique_photographers %}
+              <option value="{{ photographer.id }}" {% if selected_photographer == photographer.id %}selected{% endif %}>
+                {{ photographer.username }}
+              </option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn event-btn w-50">Filter</button>
+        </div>
+      </form>
+    </div>
+    <!-- Right Side: Bib Search Form -->
+    <div class="col-md-6">
+      <form method="get" action="{% url 'event_detail' event_id=event.id %}" class="search-form">
+        <div class="d-flex align-items-center">
+          <input type="text" name="search" id="search" placeholder="Search your bib number" value="{{ search_query|default:'' }}" class="form-control event-input me-2">
+          <button type="submit" class="btn event-btn w-50">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="home-blog event-card">
+    <div class="container">
+      <div class="row">
+        {% for photo in page_obj %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+          <div class="card rounded-0 border-0 layout_3--item">
+            {% if photo.image_with_watermark %}
+              <a href="{% url 'event_detail_v1' event_id=event.id %}">
+                <img class="card-img-top rounded-0" src="{{ photo.image_with_watermark.url }}" alt="Photo with Watermark">
+              </a>
+            {% endif %}
+            <div class="card-body">
+              <div class="meta mb-2">
+                <span class="author">Photographer: {{ photo.photographer.username }}</span>
+              </div>
+              <form action="{% url 'add_to_cart' %}" method="post" class="photo-form">
+                {% csrf_token %}
+                <input type="hidden" name="photo_id" value="{{ photo.id }}">
+                <div class="mb-3">
+                  <label for="product_type_{{ photo.id }}" class="form-label">Select Quality:</label>
+                  <select name="product_type" id="product_type_{{ photo.id }}" class="form-select">
+                    {% for product_type in photo.product_types.all %}
+                      <option value="{{ product_type.id }}">
+                        {{ product_type.format }} - {{ product_type.price }} €
+                      </option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <button type="submit" class="btn event-btn w-100">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        {% empty %}
+            <p>Search NC to see no detected photos. We didn't detect any photos of you. </p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+    {% include "footer.html" %}
+{% endblock %}

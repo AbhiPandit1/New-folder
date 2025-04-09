@@ -1,0 +1,95 @@
+{% block content %}
+<section class="plan_container">
+    <div class="plan_container_hero">
+      <h1 class="plan_container_hero__title">Simple, transparent pricing</h1>
+      <p class="plan_container_hero__subtitle">
+        No contracts. No surprise fees.
+      </p>
+    </div>
+    <div class="plan_container_item_wrapper">
+      <!-- Free Plan -->
+      <div class="plan_container_item plan_container_item--free border">
+        <div class="plan_container_card">
+          <div class="plan_container_card__header">
+            <div
+              class="plan_container_card__icon plan_container_symbol plan_container_symbol--rounded"
+            ></div>
+            <h2>Free</h2>
+          </div>
+          <div class="plan_container_card__desc">
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          </div>
+        </div>
+        <div class="plan_container_price">$0<span>/ month</span></div>
+        <ul class="plan_container_feature_list">
+          <li>2 links</li>
+          <li>Own analytics platform</li>
+          <li>Chat support</li>
+          <li class="disabled">Mobile application</li>
+          <li class="disabled">Unlimited users</li>
+        </ul>
+        <button class="plan_container_button plan_container_button--free">
+          Get Started
+        </button>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="plan_container_item plan_container_item--pro border">
+        <div class="plan_container_card">
+          <div class="plan_container_card__header">
+            <div
+              class="plan_container_card__icon plan_container_symbol"
+            ></div>
+            <h2>Pro</h2>
+            <div class="plan_container_label">Best Value</div>
+          </div>
+          <div class="plan_container_card__desc">
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          </div>
+        </div>
+        <div class="plan_container_price">$18<span>/ month</span></div>
+        <ul class="plan_container_feature_list">
+          <li>2 links</li>
+          <li>Own analytics platform</li>
+          <li>Chat support</li>
+          <li class="disabled">Mobile application</li>
+          <li class="disabled">Unlimited users</li>
+        </ul>
+        <button class="plan_container_button plan_container_button--pro">
+          Get Started
+        </button>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="plan_container_item plan_container_item--enterprise border">
+        <div class="plan_container_card">
+          <div class="plan_container_card__header">
+            <div
+              class="plan_container_card__icon plan_container_symbol plan_container_symbol--rounded"
+            ></div>
+            <h2>Enterprise</h2>
+          </div>
+          <div class="plan_container_card__desc">
+            Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+          </div>
+        </div>
+        <div class="plan_container_price">Let's Talk</div>
+        <ul class="plan_container_feature_list">
+          <li>2 links</li>
+          <li>Own analytics platform</li>
+          <li>Chat support</li>
+          <li>Mobile application</li>
+          <li>Unlimited users</li>
+          <li>Customize Panel</li>
+        </ul>
+        <button
+          class="plan_container_button plan_container_button--enterprise"
+        >
+          Get Started
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}

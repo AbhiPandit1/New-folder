@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photographer Orders</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .total-revenue {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .pagination a {
+            padding: 8px 12px;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination .current {
+            font-weight: bold;
+            padding: 8px 12px;
+        }
+
+        nav {
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #23bae8;
+        }
+
+        nav .connected {
+            margin-right: 20px;
+            font-size: 16px;
+        }
+
+        nav .connected a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav .connected a:hover {
+            color: #23bae8;
+        }
+
+        nav .panier {
+            font-size: 16px;
+        }
+
+        nav .panier a {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        nav .panier a:hover {
+            transform: scale(1.1);
+        }
+
+        nav .panier img {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ddd;
+        }
+
+        footer p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+{% load static %}
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'dashboard' %}">Retour au Dashboard</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+            <div class="connected"><a href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a></div>
+        {% endif %}
+        <div class="panier"><a href="{% url 'view_cart' %}"><img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier"></a></div>
+    </nav>
+    <h1>Orders for {{ request.user.username }}</h1>
+    <form method="GET">
+        <label for="selected_month">Select a month:</label>
+        <select id="selected_month" name="selected_month">
+            {% for month_name, month_value in months %}
+                <option value="{{ month_value }}" {% if month_value == selected_month %}selected{% endif %}>{{ month_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <div class="total-revenue">
+        Total Revenue: {{ total_revenue }}€
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Illustration</th>
+                <th>Numéro de commande</th>
+                <th>Date</th>
+                <th>Produit Type</th>
+                <th>Prix</th>
+                <th>Coût</th>
+                <th>Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+                <tr>
+                    <td><img src="{{ item.photo.image_with_watermark.url }}" alt="Photo" width="100"></td>
+                    <td>{{ item.order.id }}</td>
+                    <td>{{ item.order.date }}</td>
+                    <td>{{ item.product_type.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.cost }}</td>
+                    <td>{{ item.revenue }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1&selected_month={{ selected_month }}">Première</a>
+                <a href="?page={{ page_obj.previous_page_number }}&selected_month={{ selected_month }}">Précédente</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&selected_month={{ selected_month }}">Suivante</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&selected_month={{ selected_month }}">Dernière</a>
+            {% endif %}
+        </span>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Sportivision. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

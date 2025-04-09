@@ -1,0 +1,472 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportiVision - Home</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-...your-integrity..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Tailwind Custom Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: '#1D4ED8',
+            accent: '#06b6d4',
+            dark: '#0f172a',
+            softDark: '#1e293b',
+            base: '#000000',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    .gsap-hidden {
+      display: none;
+    }
+
+    .nav-link {
+      @apply text-lg font-semibold text-white hover:text-accent transition duration-200;
+    }
+
+    .slick-carousel-buttons {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+    }
+
+    .mid {
+      display: flex;
+      gap: 10px;
+    }
+
+    .slick-carousel-buttons .mid button {
+      width: 30px;
+      height: 30px;
+      background-color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: red;
+    }
+
+    /* Add hover effect */
+    .slick-carousel-buttons .mid button:hover {
+      background-color: red;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .slick-carousel-buttons .mid button:active {
+      transform: scale(0.95);
+    }
+
+    .view-gallery-container {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      /* Optionally add some spacing around the button */
+      padding: 10px;
+    }
+
+    .view-gallery-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: rgba(255, 255, 255, 0.2);
+      /* semi-transparent background */
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: 2px solid white;
+      border-radius: 30px;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      animation: pulse 2s infinite;
+    }
+
+    /* Hover effect: slight scale-up and brighter background */
+    .view-gallery-button:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+      transform: scale(1.05);
+    }
+
+    /* Pulse animation */
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
+    }
+
+    .carousel-text {
+      /* Original semi-transparent background and styling */
+      background-color: rgba(0, 0, 0, 0.25);
+      padding: 1rem;
+      border-radius: 8px;
+      display: inline-block;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+      transition: all 0.3s ease-in-out;
+      /* For smooth hover effects */
+    }
+
+
+    .carousel-text:hover {
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    }
+
+    .carousel-text h4 a {
+      color: white;
+      transition: background 0.3s ease, -webkit-text-fill-color 0.3s ease;
+    }
+
+    .carousel-text h4 a:hover {
+      background: linear-gradient(to right, #ffc107, var(--tw-gradient-to-position));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ---- Partners Slider ---- */
+    .partner-section {
+      background-color: transparent;
+      position: relative;
+    }
+
+    .partners-slider {
+      overflow: hidden;
+      position: relative;
+      height: 100px;
+      padding: 0 10px;
+    }
+
+    /* Left/right fade effect */
+    .partners-slider::before,
+    .partners-slider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 80px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+
+    /* Track container */
+    .partners-slide-track {
+      display: flex;
+      align-items: center;
+      animation: scroll 30s linear infinite;
+    }
+
+    /* Center mode stops scrolling */
+    .partners-center-mode .partners-slide-track {
+      justify-content: center;
+      animation: none;
+    }
+
+    /* Individual slides */
+    .partners-slide {
+      flex: 0 0 auto;
+      width: 200px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: grayscale(100%);
+      transition: filter 0.3s, transform 0.3s;
+    }
+
+    .partners-slide:hover {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+
+    .partners-slide img {
+      max-height: 95px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    /* Keyframes for infinite scroll animation */
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+   <!-- Animation Styles -->
+   <style>
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in {
+      animation: fade-in 0.8s ease-out;
+    }
+    /* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+  </style>
+</head>
+
+<body class="bg-dark text-white font-poppins">
+
+
+  {% block navbar %}{% endblock %}
+  {% block content %}{% endblock %}
+  {% block footer %}{% endblock %}
+
+
+  {% block js %}{% endblock %}
+  <script src="{% static 'v2/index.js' %}"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Updated selectors
+      const slideTrack = document.querySelector('.partners-slider .partners-slide-track');
+      if (!slideTrack) return;
+
+      const slides = Array.from(slideTrack.querySelectorAll('.partners-slide'));
+      const count = slides.length;
+
+      if (count >= 4) {
+        // For 3+ sponsors, clone 2 times (for seamless scroll)
+        for (let i = 0; i < 3; i++) {
+          slides.forEach(slide => slideTrack.appendChild(slide.cloneNode(true)));
+        }
+      }
+      //   else if (count === 2) {
+      //     // For 2 sponsors, clone 4 times to fill space
+      //     for (let i = 0; i < 8; i++) {
+      //       slides.forEach(slide => slideTrack.appendChild(slide.cloneNode(true)));
+      //     }
+      //   } 
+      //   else if (count === 1) {
+      //     // For 1 sponsor, clone 16 times to create loop illusion
+      //     for (let i = 0; i < 20; i++) {
+      //       slideTrack.appendChild(slides[0].cloneNode(true));
+      //     }
+      //   } 
+      else {
+        // No sponsors: disable animation & center as fallback
+        slideTrack.style.justifyContent = 'center';
+        slideTrack.style.animation = 'none';
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // -------------------------------
+      // Desktop dropdown
+      // -------------------------------
+      const userBtn = document.getElementById("user-btn");
+      const dropdown = document.getElementById("dropdown");
+
+      if (userBtn && dropdown) {
+        console.log("Desktop dropdown initialized.");
+
+        userBtn.addEventListener("click", function () {
+          console.log("Desktop dropdown clicked.");
+
+          // If currently hidden => show
+          if (dropdown.classList.contains("hidden")) {
+            dropdown.classList.remove("hidden", "scale-95");
+            dropdown.classList.add("scale-100");
+          }
+          // Else => hide
+          else {
+            dropdown.classList.add("hidden", "scale-95");
+            dropdown.classList.remove("scale-100");
+          }
+        });
+      }
+
+      // -------------------------------
+      // Mobile dropdown
+      // -------------------------------
+      const userBtnMobile = document.getElementById("user-btn-mobile");
+      const dropdownMobile = document.getElementById("dropdown-mobile");
+
+      if (userBtnMobile && dropdownMobile) {
+        console.log("Mobile dropdown initialized.");
+
+        userBtnMobile.addEventListener("click", function () {
+          console.log("Mobile dropdown clicked.");
+
+          // If currently hidden => show
+          if (dropdownMobile.classList.contains("hidden")) {
+            dropdownMobile.classList.remove("hidden", "scale-95");
+            dropdownMobile.classList.add("scale-100");
+          }
+          // Else => hide
+          else {
+            dropdownMobile.classList.add("hidden", "scale-95");
+            dropdownMobile.classList.remove("scale-100");
+          }
+        });
+      }
+
+      // -------------------------------
+      // Close dropdowns on outside click
+      // -------------------------------
+      document.addEventListener("click", function (e) {
+        // Desktop
+        if (userBtn && dropdown) {
+          // If user clicked outside both userBtn & dropdown
+          if (!userBtn.contains(e.target) && !dropdown.contains(e.target)) {
+            // Hide
+            dropdown.classList.add("hidden", "scale-95");
+            dropdown.classList.remove("scale-100");
+          }
+        }
+
+        // Mobile
+        if (userBtnMobile && dropdownMobile) {
+          // If user clicked outside both userBtnMobile & dropdownMobile
+          if (
+            !userBtnMobile.contains(e.target) &&
+            !dropdownMobile.contains(e.target)
+          ) {
+            // Hide
+            dropdownMobile.classList.add("hidden", "scale-95");
+            dropdownMobile.classList.remove("scale-100");
+          }
+        }
+      });
+    });
+  </script>
+
+<script>
+  const toggleBtn = document.getElementById('toggleForm');
+  const formTitle = document.getElementById('formTitle');
+  const registerFields = document.getElementById('registerFields');
+  const confirmPasswordField = document.getElementById(
+    'confirmPasswordField'
+  );
+
+  let isSignIn = true;
+
+  toggleBtn.addEventListener('click', () => {
+    isSignIn = !isSignIn;
+    formTitle.innerText = isSignIn ? 'Sign In' : 'Register';
+    toggleBtn.innerText = isSignIn
+      ? 'Switch to Register'
+      : 'Switch to Sign In';
+    registerFields.classList.toggle('hidden', isSignIn);
+    confirmPasswordField.classList.toggle('hidden', isSignIn);
+  });
+
+  function togglePassword(inputId, iconSpan) {
+    const input = document.getElementById(inputId);
+    const svg = iconSpan.querySelector('svg');
+
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+
+    svg.innerHTML = isPassword
+      ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13.875 18.825A10.05 10.05 0 0112 19
+            c-4.478 0-8.268-2.943-9.542-7
+            a10.05 10.05 0 012.387-3.568M6.423 6.423
+            A9.969 9.969 0 0112 5
+            c4.478 0 8.268 2.943 9.542 7
+            a9.965 9.965 0 01-4.122 5.132M15 12
+            a3 3 0 00-3-3m0 0
+            a3 3 0 00-3 3m6 0
+            a3 3 0 01-3 3m0 0
+            a3 3 0 01-3-3m12 8l-18-18" />`
+      : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M2.458 12C3.732 7.943 7.523 5 12 5
+            c4.478 0 8.268 2.943 9.542 7
+            -1.274 4.057-5.064 7-9.542 7
+            -4.477 0-8.268-2.943-9.542-7z" />`;
+  }
+</script>
+
+<script>
+  // Validate the image dimensions on file selection
+  var imageInput = document.getElementById('id_image');
+  if(imageInput){
+    imageInput.addEventListener('change', function() {
+      var file = this.files[0];
+      if(file){
+        var img = new Image();
+        img.onload = function() {
+          if (this.width < 200 || this.height < 100) {
+            alert('L\'image doit avoir une résolution minimale de 200x100 pixels.');
+            imageInput.value = ''; // Clear the input
+          }
+        };
+        img.src = URL.createObjectURL(file);
+      }
+    });
+  }
+  </script>
+  <script>
+    // Mobile menu toggle script
+    document.getElementById('mobile-menu-btn').addEventListener('click', function(){
+      var mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+
+</html>

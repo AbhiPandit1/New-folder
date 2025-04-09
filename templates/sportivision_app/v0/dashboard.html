@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+
+        body > nav > ul > li.logo > a > img {
+            height: auto;
+            width: 55px;
+        }
+
+        body > nav > div > a > img {
+            height: 30px;
+            width: auto;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: black;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .dashboard-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .dashboard-links a {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            background-color: #ADB5BD;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-links a:hover {
+            background-color: #6C757D;
+        }
+
+        .logout-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .logout-link a {
+            color: #dc3545;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logout-link a:hover {
+            color: #a71d2a;
+        }
+                footer {
+    text-align: center;
+    margin-top: 20px;
+
+    width: 100%;
+    background-color: #ddd;
+}
+
+footer p {
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+<body>
+{% load static %}
+<nav>
+    <ul>
+        <li class="logo"><a href="{% url 'main' %}"><img src="{% static 'logo.png' %}" alt="logo"></a></li>
+        <li><a href="{% url 'event_list' %}">Event</a></li>
+        <li><a href="{% url 'dashboard' %}">Photographe</a></li>
+    </ul>
+    {% if user.is_authenticated %}
+        <div class="connected"><a href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a></div>
+    {% endif %}
+    <div class="panier"><a href="{% url 'view_cart' %}"><img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier"></a></div>
+</nav>
+<div class="container">
+    <h1>Tableau de bord</h1>
+    <h2>Bienvenue, {{ user.username }} !</h2>
+    <div class="dashboard-links">
+        <a href="{% url 'customize_watermark' %}">Personnaliser le filigrane</a>
+        <a href="{% url 'create_product_type' %}">Créer un nouveau produit type</a>
+        <a href="{% url 'product_type_list' %}">Gérer ses produits type</a>
+        <a href="{% url 'create_event' %}">Créer un événement</a>
+        <a href="{% url 'add_photos_to_event' %}">Ajouter des photos à un événement</a>
+        <a href="{% url 'manage_photos' %}">Gérer ses photos</a>
+        <a href="{% url 'photographer_orders' %}">Voir ses revenus</a>
+    </div>
+    <div class="logout-link">
+        <a href="{% url 'logout' %}">Déconnexion</a>
+    </div>
+</div>
+
+</body>
+</html>

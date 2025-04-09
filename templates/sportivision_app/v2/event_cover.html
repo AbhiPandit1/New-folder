@@ -1,0 +1,73 @@
+{% block content %}
+<div class="relative h-[85vh] overflow-hidden" id="hero-section">
+
+  <!-- Cover image at the very back (z-0) -->
+  <div
+    class="absolute inset-0 bg-cover bg-center z-0"
+    style="background-image: url('{{ event.cover.url }}')"
+  >
+  </div>
+
+  <!-- Light gradient overlay above cover but behind content -->
+  <div
+    class="absolute inset-0 bg-gradient-to-t from-white via-white to-transparent opacity-50 z-0"
+  ></div>
+
+  <!-- All foreground content at a higher z-index -->
+  <div class="relative z-10 flex flex-col h-full">
+
+    <!-- Title area (centered vertically) -->
+    <div class="flex-grow flex flex-col items-center justify-center text-white ">
+        <div class="relative text-center space-y-2 px-4 z-10 carousel-text">
+      <a href="{% url 'event_detail' event_id=event.id %}">
+        <h1 class="text-3xl md:text-4xl font-extrabold text-yellow-300 drop-shadow-lg">
+          {{ event.title }}
+        </h1>
+      </a>
+      <h2 class="text-2xl md:text-3xl font-semibold text-accent">{{ event.formatted_date }}</h2>
+      <p class="text-lg md:text-xl text-white font-medium">
+        {{ event.location }}
+      </p>
+    </div>
+    </div>
+
+    <!-- Sponsors section (below title) -->
+    {% if sponsors %}
+      <div class="partner-section mb-4">
+        <div class="partners-slider {% if sponsors|length < 1 %}partners-center-mode{% endif %}">
+          <div class="partners-slide-track">
+            {% for sponsor in sponsors %}
+              <div class="partners-slide">
+                <a href="{{ sponsor.website|default:'#' }}" target="_blank">
+                  <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <!-- Search section (below sponsors) -->
+    <div class="px-4 mb-6">
+      <form action="{% url 'event_detail' event_id=event.id  %}" method="GET" class=" p-4 sm:p-6 ">
+        <div class="relative w-full max-w-md mx-auto">
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            🔍
+          </span>
+          <input
+            type="text"
+            placeholder="Search Photos..."
+            value="{{ search_query|default:'' }}"
+            name="search"
+            id="search"
+            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg text-base
+                   focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

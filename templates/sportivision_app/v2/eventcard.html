@@ -1,0 +1,40 @@
+{% block content %}
+<div class="home-blog bg-[#0f172a] py-12 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div id="blogGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <!-- Blog Card Start -->
+      {% for event in events %}
+      <div
+      class="bg-[#1e293b] rounded-2xl shadow-lg transform transition-transform duration-500 hover:rotate-[-3deg] hover:scale-[1.02] hover:shadow-blue-500/40"
+      >
+        <!-- Image -->
+        <a href="{% url 'event_detail' event_id=event.id %}">
+        <img src="{{ event.get_event_cover }}" alt="{{ event.title }}" class="w-full h-48 object-cover rounded-t-xl" />
+        </a>
+        <!-- Content Box -->
+        <div
+          class="relative p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-b-xl flex flex-col justify-between min-h-[140px]">
+          <!-- Blog Info -->
+          <div class="space-y-2">
+            <h4 class="text-lg font-bold text-white font-medium transition duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#ff5733] hover:via-[#ff6f61] hover:via-[#ffb300] hover:to-[#ffc107] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 hover:after:w-full after:bg-gradient-to-r after:from-[#ff5733] after:via-[#ff6f61] after:via-[#ffb300] after:to-[#ffc107] after:transition-all after:duration-300 ">
+              <a href="{% url 'event_detail' event_id=event.id %}">
+                {{ event.title }}
+              </a>
+            </h4>
+            <div class="text-sm text-gray-300">
+              <p class="mb-1">In <span class="font-medium">{{ event.location }}</span></p>
+              <p>{{ event.formatted_date }}</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      {% endfor %}
+      <!-- Blog Card End -->
+    </div>
+
+   
+  </div>
+</div>
+{% endblock %}

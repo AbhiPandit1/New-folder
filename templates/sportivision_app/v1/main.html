@@ -1,0 +1,291 @@
+{% block main %}
+{% load static %}
+<div class="main">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+      <div class="container">
+        <a
+          class="navbar-brand fw-bold text-uppercase text-white"
+          href="/v1"
+        >
+          <span
+            class="logo-text"
+            style="
+              font-family: 'Poppins', sans-serif;
+              font-size: 1.8rem;
+              letter-spacing: 1px;
+            "
+            >SportiVision</span
+          >
+        </a>
+
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav gap-4">
+            <li class="nav-item">
+              <a
+                class="nav-link text-white fw-semibold"
+                href="/v1"
+                style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="{% url 'dashboard' %}"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >Photographe</a
+                >
+              </li>
+            
+            <li class="nav-item">
+              <a
+                class="nav-link text-white fw-semibold"
+                href="/v1"
+                style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                >Events</a
+              >
+            </li>
+            <li class="nav-item">
+                <a
+                  class="nav-link text-white fw-semibold"
+                  href="#"
+                  style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+                  >About</a
+                >
+              </li>
+          </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-4">
+          <a href="{% url 'view_cart' %}" class="text-white position-relative">
+            <i class="bi bi-cart" style="font-size: 1.8rem"></i>
+            <span
+              class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill"
+              >1</span
+            >
+          </a>
+          {% if user.is_authenticated %}
+          <a
+            href="{% url 'dashboard' %}"
+            class="text-white fw-bold"
+            style="font-size: 1.2rem; font-family: 'Poppins', sans-serif"
+            >Connecté en tant que: {{ user.username }}</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <div class="banner-area home-banner1">
+      <div class="banner-slider banner-slider1">
+        <div
+          class="banner-bg"
+          style="background-image: url('https://storage.googleapis.com/sportivision-public/Event/Belgian%20Enduro%20Cup%20-%20Amay/Cover/about.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sportivision%40sincere-burner-419722.iam.gserviceaccount.com%2F20250403%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250403T081926Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=896d51626ec4efd03c836403080bd539ec29cf82add5e624fb65e53b2492f8dc887f0ca2368c589f8a2746dbae10ac2cc63b025fba884883a47ce0cbc22f2b9600304fb3ed370d67c706cba9369608485a9e30ec21bb532fb958dcb3ef3fb34a6e0ca426f14af220a9ea92e860d2235c6dbf670431661d6fea0be8e92c41bb7c4742fecac65fcb3b0c75e5ecbaa1ff66a4909919087ee835636d70b63376206e8933f4dabc573746ead8f9d2e88e6ec73548ba4d445dba92047612e5af6f6c6928ba99039189a913707afbaca3970f455ed7c0888345a0ac7e05f0cdd380f958f4a077fd121a28db864e279d777b01d0293b0d7a9768c10a2a091649c845269c');"
+
+        >
+          <div class="container">
+            <div class="row h-100vh">
+              <div
+                class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+              >
+                <div class="banner-inner">
+                  <p data-animation-in="fadeInLeft">
+                    Growing up in Michigan, I was lucky enough to<br />
+                    experience one part of the Great Lakes.
+                  </p>
+                  <h1 class="title1" data-animation-in="fadeInDown">
+                    Biking
+                  </h1>
+                  <h1 class="title2" data-animation-in="fadeInUp">
+                    Mountain
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="banner-bg"
+          style="background-image: url('https://storage.googleapis.com/sportivision-public/Event/G-Skin%20Baraque%20de%20Fraiture/Cover/banner-5.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sportivision%40sincere-burner-419722.iam.gserviceaccount.com%2F20250403%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250403T082221Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=ce1a73ebcf87a6f13f1973e64817f4fbab2e3e3a7ff41a0b1cd91820b21c68fe258425ef9b7824595d42f9fea95b17cb5bfc154c6b656de255b0d24c20e851f1a1b3acc015c7054627ead24aa86524b0fbbab324f29a9cec8666e50dee0c32d024fa7f3b3120e7ac2cde7edb7bcef15c92b01a008b1e6ec9fdeacdd50399817a439f01c189740f6ea6b8ea0a6fb963852b7c5abd58d626cd2b34caaa0feee5fef82826089793014aa56c6f6b233dc46548f1562d05c475a60f80830d47c49ec8273f21822ea60ee3c8f78c6b062d413c50d4ebd541ab6159dfc4a2dbfdeae6101828c0f9b232c5e7b6bdc48d058c23e6011ecff7ac67ee9b3db7047a9ec7a616');"
+
+        >
+          <div class="container">
+            <div class="row h-100vh">
+              <div
+                class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+              >
+                <div class="banner-inner">
+                  <p data-animation-in="fadeInLeft">
+                    Riding Is A Way To Explore<br />
+                    A Way To Explore Nature And The World.
+                  </p>
+                  <h1 class="title1" data-animation-in="fadeInDown">
+                    Denver
+                  </h1>
+                  <h1 class="title2" data-animation-in="fadeInUp">
+                    Have Fun
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="banner-bg"
+          style="background-image: url('https://storage.googleapis.com/sportivision-public/Event/Belgian%20Enduro%20Cup%20-%20Amay/Cover/banner-3.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sportivision%40sincere-burner-419722.iam.gserviceaccount.com%2F20250403%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250403T082222Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=09d312d49ab648d6dd6b8b7738ad57a7ff3d3ef01df471f14767327828c95bedbb182293a64551037048332531312dc7170e135d3758984ed591cd5fd095ac9a1c22c85c360c051c68645d1198609aa1c6581683b33b6a4727d4e62336c0f10960a896321d5c8ac79b7bbedb35166844547c5f580b4fcbe3748d1c3d3dab25e950c8e27e5fba97541f7fa3b9d9f04780f140fab295c1f1635bcd8b93306c106086de554f593b0df0d970dc59794bd1a2766e685e85f34d401f2359b228a29df75c165959f8d14e5ebdf2972e62a94aa3fb2dd623b5ff8ce4ee0b953366d025c881d104117b095f34a1f8dd2dd0156ac490f330411f694c25aac2a8d488052a9a');"
+
+        >
+          <div class="container">
+            <div class="row h-100vh">
+              <div
+                class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+              >
+                <div class="banner-inner">
+                  <p data-animation-in="fadeInLeft">
+                    Growing up in Michigan, I was lucky enough to<br />
+                    experience one part of the Great Lakes.
+                  </p>
+                  <h1 class="title1" data-animation-in="fadeInDown">
+                    Biking
+                  </h1>
+                  <h1 class="title2" data-animation-in="fadeInUp">
+                    Feel good
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="banner-bg"
+          style="background-image: url('https://storage.googleapis.com/sportivision-public/Event/Belgian%20Enduro%20Cup%20-%20Amay/Cover/banner-2.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sportivision%40sincere-burner-419722.iam.gserviceaccount.com%2F20250403%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250403T082221Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=1c63c603f0cde37fb74edeff4370eb5c467b51300d534a9ceacd35ab91b89442276685e01fedc45ff753c32f178655a3e3e080ab27938f5ee267c62c8dcab71fb00d3dfc3878b5af5b728941dd3a7accfa9f69f5593a0f2e9de9285d3e837c7228c4781e4297ca5df04b8d795bc31afb3fbd0fafe943eb3f87ff0603b7a6e942e5b2f4965389777990cfff1ea270434ab1c927aecb84e5c4f632937f81aa62f47b0217e6ffa0542242231d41de318c8ebf4c54487093f26b2a3f4eae6b61655027b84ad6907436819d1420ded027364a1ab5bed02658aa2709708342cfb943da4323820d2359574aa5c8e77e627d84272a2e2e922a8d5390d280868f8c8f7d0e');"
+
+        >
+          <div class="container">
+            <div class="row h-100vh">
+              <div
+                class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+              >
+                <div class="banner-inner">
+                  <p data-animation-in="fadeInLeft">
+                    Life is like riding<br />
+                    you must keep moving
+                  </p>
+                  <h1 class="title1" data-animation-in="fadeInDown">Honk</h1>
+                  <h1 class="title2" data-animation-in="fadeInUp">
+                    Mountain
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="banner-bg"
+          style="background-image: url('https://storage.googleapis.com/sportivision-public/Event/Belgian%20Enduro%20Cup%20-%20Amay/Cover/about.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sportivision%40sincere-burner-419722.iam.gserviceaccount.com%2F20250403%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250403T082340Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=0e9578f852c4f656fbcfb2ff59cf52aef8dd2df662cf29fad71e1eafcbf097a5809b14474aca4389c7369d625165175fae6c598b4a22fdba0ea9c07e15f2bf1b6b7b85fcdf597beedd1d242415a9d97fec7865615c4d2daf826b78cab154730ebe9a144641bb168137b39fcf7f4f1c6043ad80e21dbcf1d077d323b5a79e4d8987a2e899c513c33c596c3512ff497e6bb537a8a603a9d73ef81eaf9e49e4b14553fc69f544418be85f300d20af2451406cd695c17ec9c6d2d9aa3134267450919cc8bb60a18eb4a438a52d48d01f3888ec7ae8e37f863d3f153d5ad4bdf8b14a2fd3d9364fb5de2e80c772b01e0742d00f7fffbca2af422906d22449ce31b5a4');"
+
+        >
+          <div class="container">
+            <div class="row h-100vh">
+              <div
+                class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2"
+              >
+                <div class="banner-inner">
+                  <p data-animation-in="fadeInLeft">
+                    Nothing compares<br />
+                    the simple pleasure of a bike ride
+                  </p>
+                  <h1 class="title1" data-animation-in="fadeInDown">
+                    Denver
+                  </h1>
+                  <h1 class="title2" data-animation-in="fadeInUp">
+                    Feel good
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- scroll down -->
+      <div class="scroll">
+        <a href="#about-area">
+          <div class="scroll-btn"><span class="inside-bg"></span></div>
+        </a>
+        <span>Scroll to explore</span>
+      </div>
+      <div class="banner-sm-slider"></div>
+      <div class="slick-carousel-buttons">
+        <div class="mid">
+          <button class="prev">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <button class="next">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="slider">
+      <div class="slide-track">
+        <div class="slide">
+          <a href="https://www.fcwb.be/home3.asp?ClubID=563&LG=FR" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-1.jpg' %}" alt="FCWB">
+          </a>
+        </div>
+        <div class="slide">
+          <a href="https://eu.alpinestars.com/pages/mtb" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-6.jpg' %}" alt="Alpinestars">
+          </a>
+        </div>
+        <div class="slide">
+          <a href="https://galfer.eu/bike/" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-8.jpg' %}" alt="Galfer">
+          </a>
+        </div>
+        <div class="slide">
+          <a href="https://www.isuzu.be" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-5.jpg' %}" alt="Isuzu">
+          </a>
+        </div>
+        <div class="slide">
+          <a href="https://www.bike2b.be" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-4.jpg' %}" alt="Bike2B">
+          </a>
+        </div>
+        <div class="slide">
+          <a href="https://www.vojomag.com" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-3.jpg' %}" alt="Vojomag">
+          </a>
+        </div>
+        <div class="slide">
+          <a href="http://www.mondraker.com" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-7.jpg' %}" alt="Mondraker">
+          </a>
+        </div>
+        <!-- Only include this slide if you have an image for Monkey Products -->
+        <div class="slide">
+          <a href="https://www.monkey-products.com" target="_blank">
+            <img src="{% static 'assests/images/sponsors/sp-2.jpg' %}" alt="Monkey Products">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

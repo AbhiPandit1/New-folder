@@ -1,0 +1,309 @@
+
+:root {
+    --baseColor: #656c7c;
+    --baseSize: 16px;
+    --baseLineHeight: 1.5;
+    --fontFamily: Inter, sans-serif;
+    --pink: #ea4c89;
+    --pinkLight: #ffecf0;
+    --blue: #1769ff;
+}
+
+
+/* Main container */
+.plan_container {
+    width: 96%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 0 2rem;
+  }
+  
+  /* Hero section */
+  .plan_container_hero {
+    text-align: center;
+    padding: 2rem 0 2.5rem;
+    line-height: 1.21;
+  }
+  
+  .plan_container_hero__title {
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    color: #000;
+  }
+  
+  .plan_container_hero__subtitle {
+    margin: 0;
+  }
+  
+  /* Plan item container */
+  .plan_container_item_wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Plan item */
+  .plan_container_item {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1rem;
+    box-shadow: none;
+    padding: 2rem 1.5rem;
+    display: inline-flex;
+    flex-direction: column;
+  }
+  
+  .plan_container_item .plan_container_price {
+    margin: 2rem 0;
+  }
+  
+  .plan_container_item .plan_container_button {
+    margin-top: auto;
+  }
+  
+  /* Pro plan */
+  .plan_container_item--pro {
+    border: 0;
+    box-shadow: 0px 14px 30px rgba(204, 204, 204, 0.32);
+  }
+  
+  .plan_container_item--pro .plan_container_label {
+    background-color: #fdb72e;
+    color: #fff;
+  }
+  
+  /* Enterprise plan */
+  .plan_container_item--entp {
+    background-color: var(--blue);
+  }
+  
+  .plan_container_item--entp .plan_container_card {
+    --titleColor: #fff;
+  }
+  
+  .plan_container_item--entp .plan_container_card h2 {
+    color: #fff;
+  }
+  
+  .plan_container_item--entp .plan_container_card__desc {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .plan_container_item--entp .plan_container_card__icon {
+    background-image: var(--entpIcon);
+    background-size: cover;
+  }
+  
+  .plan_container_item--entp .plan_container_price,
+  .plan_container_item--entp .plan_container_feature_list {
+    color: #fff;
+  }
+  
+  .plan_container_item--entp .plan_container_feature_list li:before {
+    background-image: var(--whiteTick);
+  }
+  
+  /* Button */
+  .plan_container_button {
+    border-radius: 0.5rem;
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 0;
+    line-height: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: var(--pinkLight);
+    color: var(--pink);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    user-select: none;
+  }
+  
+  .plan_container_button--pink {
+    background-color: var(--pink);
+    color: #fff;
+  }
+  
+  .plan_container_button--white {
+    background-color: #fff;
+  }
+  
+  .plan_container_button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 10px rgba(234, 76, 137, 0.3);
+  }
+  
+  .plan_container_button--pink:hover {
+    box-shadow: 0px 6px 10px rgba(234, 76, 137, 0.5);
+  }
+  
+  .plan_container_button--white:hover {
+    box-shadow: 0px 6px 10px rgba(255, 255, 255, 0.3);
+  }
+  
+  .plan_container_button:focus-visible {
+    outline-offset: 2px;
+    outline: 2px solid var(--pink);
+  }
+  
+  .plan_container_button--white:focus-visible {
+    outline: 2px solid #fff;
+  }
+  
+  /* Card */
+  .plan_container_card {
+    --titleColor: #000;
+    --descColor: var(--baseColor);
+  }
+  
+  .plan_container_card__header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .plan_container_card__icon {
+    width: 2.625rem;
+    height: 2.625rem;
+  }
+  
+  .plan_container_card h2 {
+    color: var(--titleColor);
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-weight: 400;
+    margin: 0;
+    flex-grow: 1;
+  }
+  
+  .plan_container_card__desc {
+    margin: 1.5rem 0 0;
+    color: var(--descColor);
+  }
+  
+  /* Label */
+  .plan_container_label {
+    font-weight: 600;
+    line-height: 1.25;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0.625rem 1.125rem;
+    border-radius: 2rem;
+    user-select: none;
+    background-color: #e5e5e5;
+    color: var(--baseColor);
+  }
+  
+  /* Price */
+  .plan_container_price {
+    display: flex;
+    color: #000;
+    align-items: center;
+    gap: 0.5625rem;
+    font-weight: 600;
+    font-size: 2rem;
+    margin: 0;
+  }
+  
+  .plan_container_price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--baseColor);
+  }
+  
+  /* Feature list */
+  .plan_container_feature_list {
+    margin: 0 0 2.75rem;
+    padding: 0;
+    font-weight: 500;
+    color: #000;
+  }
+  
+  .plan_container_feature_list li {
+    color: #000;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .plan_container_feature_list li:before {
+    content: "";
+    background-image: var(--redTick);
+    background-size: cover;
+    display: block;
+    width: 1.125rem;
+    height: 0.875rem;
+  }
+  
+  .plan_container_feature_list li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .plan_container_feature_list li.disabled {
+    color: #b1b8c9;
+  }
+  
+  .plan_container_feature_list li.disabled:before {
+    background-image: var(--close);
+    height: 1.125rem;
+  }
+  
+  /* Symbol */
+  .plan_container_symbol {
+    border: 2px solid var(--blue);
+    width: 2.625rem;
+    height: 2.625rem;
+    border-radius: 0.25rem;
+    position: relative;
+  }
+  
+  .plan_container_symbol--rounded {
+    border-radius: 2rem;
+  }
+  
+  .plan_container_symbol:after {
+    content: "";
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    border: 2px solid var(--pink);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.25rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .plan_container_symbol--rounded:after {
+    border-radius: 2rem;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .plan_container {
+      max-width: 480px;
+      width: 90%;
+    }
+  
+    .plan_container_item_wrapper {
+      grid-auto-flow: row;
+    }
+  }
+  
+  @media screen and (min-width: 641px) and (max-width: 768px) {
+    :root {
+      --baseSize: 12px;
+    }
+  }
+  
+  @media screen and (min-width: 769px) and (max-width: 1080px) {
+    :root {
+      --baseSize: 14px;
+    }
+  }

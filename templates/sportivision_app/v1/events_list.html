@@ -1,0 +1,80 @@
+{% load static %}
+
+
+<section id="about-area" class="container mt-4">
+    <div class="container">
+      <div class="row justify-content-center align-items-center mb-4">
+        <div class="col-12 event-header mt-4 mb-3 text-center text-md-start">
+          <h1 class="event-title">🔍 Recherche ton événement !</h1>
+        </div>
+      </div>
+
+      <form action="{% url 'event_list' %}" method="GET" class="event-form">
+        <div class="row justify-content-center align-items-center g-3">
+          <!-- Date Input -->
+          <div class="col-12 col-md-3">
+            <input
+              class="form-control event-input"
+              type="date"
+              name="date"
+              id="date"
+            />
+          </div>
+
+          <!-- Select Dropdown -->
+          <div class="col-12 col-md-3">
+            <select class="form-select event-select">
+              <option selected disabled>📍 Sélectionne un lieu</option>
+              {% for location in locations %}
+              <option value="{{ location }}">{{ location }}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="col-12 col-md-3">
+            <button type="submit" class="btn event-btn w-100">
+              🔎 Rechercher
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="home-blog">
+      <div class="container">
+        <div class="row">
+            {% for event in events %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+                <a href="{% url 'event_detail' event_id=event.id %}">
+                <div class="card rounded-0 border-0 layout_3--item">
+                {% if event.get_event_cover %}
+                <img
+                    class="card-img-top rounded-0"
+                    src="{{ event.get_event_cover }}"
+                    alt="{{ event.title }}"
+                />
+                {% endif %}
+                <div class="card-body">
+                    <h4>
+                    <a href="{% url 'event_detail' event_id=event.id %}"
+                        >{{ event.title }}</a
+                    >
+                    </h4>
+                    <div class="meta">
+                        <span class="author">{{ event.date }}</span>
+                    </div>
+                </div>
+                </div>
+            </a>
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button class="load-more" id="loadMoreBtn">Load More</button>
+    </div>
+  </section>

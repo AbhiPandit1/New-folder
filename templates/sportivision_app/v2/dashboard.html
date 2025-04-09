@@ -1,0 +1,188 @@
+{% extends "v2/base.html" %}
+{% block content %}
+<div class="min-h-screen bg-dark text-white relative">
+  <!-- Desktop Layout (visible from md and up) -->
+  <div class="hidden md:block">
+    <!-- Fixed Top Dashboard Navbar -->
+    <header class="fixed top-0 left-0 right-0 bg-gray-800 shadow-lg z-50 h-20 flex items-center">
+      <div class="container mx-auto flex items-center justify-between px-6">
+        <!-- Left: Logo -->
+        <div>
+          <a href="{% url 'main' %}"
+             class="text-2xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-[#ff5733] via-[#ff6f61] via-[#ffb300] to-[#ffc107]">
+            SportiVision
+          </a>
+        </div>
+        <!-- Center: Dashboard Title and Welcome Message -->
+        <div class="text-center">
+          <h1 class="text-2xl font-bold">Tableau de bord</h1>
+          <p class="text-sm">Bienvenue, {{ user.username }} !</p>
+        </div>
+        <!-- Right: Logout Button -->
+         <!-- User Dropdown Desktop -->
+      <div class="relative">
+        {% if user.is_authenticated %}
+        <button id="user-btn" class="text-white font-bold text-lg hover:text-white flex items-center gap-1">
+          {{ user.username }}
+          <span>▼</span>
+        </button>
+        {% else %}
+          <!-- Sign In Link for Unauthenticated Visitors -->
+          <a href="{% url 'login' %}" class="text-white font-bold text-lg hover:text-white px-4 py-2 bg-blue-600 rounded-md">
+            Sign In
+          </a>
+        {% endif %}
+        <div id="dropdown"
+          class="absolute right-0 mt-2 bg-white text-gray-800 rounded-lg shadow-xl w-44 p-2 space-y-1 border border-gray-100 z-50 hidden transition-all duration-200 ease-out transform scale-95">
+          <!-- <a href="{% url 'dashboard' %}" class="block px-4 py-2 rounded hover:bg-gray-100 transition">📋 Dashboard</a> -->
+          <a href="{% url 'logout' %}" class="block px-4 py-2 rounded hover:bg-red-100 text-red-600 transition">🚪 Sign
+            Out</a>
+            
+
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <!-- Fixed Left Sidebar Menu -->
+    <aside class="hidden md:flex flex-col fixed top-20 left-0 h-[calc(100vh-5rem)] w-64 bg-gray-800 p-6 z-40 no-scrollbar overflow-y-auto">
+      <!-- Scrollable area for menu items -->
+      <div class="flex-grow overflow-y-auto no-scrollbar">
+        <h2 class="text-2xl font-bold mb-6">Menu</h2>
+        <nav>
+          <ul class="space-y-4">
+            <li>
+              <a href="{% url 'customize_watermark' %}" class="block w-full text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+                Personnaliser le filigrane
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'create_product_type' %}" class="block w-full text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+                Créer un nouveau produit type
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'product_type_list' %}" class="block w-full text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+                Gérer ses produits type
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'create_event' %}" class="block w-full text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+                Créer un événement
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'add_photos_to_event' %}" class="block w-full text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+                Ajouter des photos à un événement
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'manage_photos' %}" class="block w-full text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+                Gérer ses photos
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'photographer_orders' %}" class="block w-full text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+                Voir ses revenus
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+     
+
+    <!-- Right Content Area (scrollable) -->
+    <main class="fixed top-20 right-0 h-[calc(100vh-5rem)] w-[calc(100%-16rem)] p-6 overflow-y-auto">
+      <div class="flex items-center justify-center min-h-full">
+        <!-- Card styled like the login card -->
+        {% block dashboard_content %}
+        <p class="text-center">Sélectionnez une option dans le menu à gauche pour afficher son formulaire.</p>
+      {% endblock %}
+      </div>
+    </main>
+  </div>
+
+  <!-- Mobile Layout (for screens smaller than md) -->
+  <div class="md:hidden">
+    <!-- Mobile Dashboard Navbar -->
+    <header class="fixed top-0 left-0 right-0 bg-gray-800 shadow-lg z-50">
+      <div class="flex items-center justify-between px-4 py-3">
+        <!-- Left: Mobile menu button -->
+        <button id="mobile-menu-btn" class="text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+               xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <!-- Center: Logo -->
+        <div class="flex-1 text-center">
+          <a href="{% url 'main' %}"
+             class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff5733] via-[#ff6f61] to-[#ffc107]">
+             SportiVision
+          </a>
+        </div>
+        <!-- Right: Logout -->
+        <div>
+          <a href="{% url 'logout' %}" class="text-white">
+            Déconnexion
+          </a>
+        </div>
+      </div>
+    </header>
+    <!-- Mobile Welcome Section -->
+    <div class="pt-16 px-4">
+      <h1 class="text-3xl font-bold text-center">Tableau de bord</h1>
+      <p class="text-lg text-center">Bienvenue, {{ user.username }} !</p>
+    </div>
+    <!-- Mobile Collapsible Menu -->
+    <nav id="mobile-menu" class="hidden bg-gray-800 px-4 py-2">
+      <ul class="space-y-2">
+        <li>
+          <a href="{% url 'customize_watermark' %}" class="block text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+            Personnaliser le filigrane
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'create_product_type' %}" class="block text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+            Créer un nouveau produit type
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'product_type_list' %}" class="block text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+            Gérer ses produits type
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'create_event' %}" class="block text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+            Créer un événement
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'add_photos_to_event' %}" class="block text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+            Ajouter des photos à un événement
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'manage_photos' %}" class="block text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+            Gérer ses photos
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'photographer_orders' %}" class="block text-center py-2 px-4 bg-gray-900 rounded hover:bg-gray-700 transition-colors">
+            Voir ses revenus
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Mobile Content Area -->
+    <div class="pt-4 px-4 pb-6">
+      {% block dashboard_content_small %}
+        <p class="text-center">Sélectionnez une option dans le menu pour afficher son formulaire.</p>
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled</title>
+    <style>
+        nav {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 15px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        body > nav > ul > li.logo > a > img {
+            height: auto;
+            width: 55px;
+        }
+
+        body > nav > div > a > img {
+            height: 30px;
+            width: auto;
+        }
+        footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ddd;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+    </style>
+
+</head>
+<body>
+    {% load static %}
+    <nav>
+        <ul>
+            <li class="logo"><a href="#"><img src="{% static 'logo.png' %}" alt="logo"></a></li>
+            <li><a href="{% url 'event_list' %}">Event</a></li>
+            <li><a href="{% url 'dashboard' %}">Photographe</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+            <div class="connected"><a href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a></div>
+        {% endif %}
+        <div class="panier"><a href="{% url 'view_cart' %}"><img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier"></a></div>
+    </nav>
+    <h1>Payment Cancelled</h1>
+    <p>Your payment was cancelled.</p>
+    <div class="content-wrapper">
+        <p>N'hésitez pas à nous <a href="mailto:info.sportivision@gmail.com">contacter</a> pour toutes informations.</p>
+
+    </div>
+
+</body>
+
+</html>

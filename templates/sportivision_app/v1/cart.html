@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        nav {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+
+        body > nav > ul > li.logo > a > img {
+            height: auto;
+            width: 55px;
+        }
+
+        body > nav > div > a > img {
+            height: 30px;
+            width: auto;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: black;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .container ul li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .scaled-image {
+            max-width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .product-details {
+            flex-grow: 1;
+        }
+
+        .product-details p {
+            margin: 5px 0;
+        }
+
+        button {
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+        }
+
+        button.place-order {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        button.place-order:hover {
+            background-color: #0056b3;
+        }
+
+        button.remove {
+            background-color: #d3d3d3;
+            color: #333;
+        }
+
+        button.remove:hover {
+            background-color: #b0b0b0;
+        }
+
+        form {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        form input[type="email"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: #777;
+        }
+                footer {
+    text-align: center;
+    margin-top: 20px;
+
+    width: 100%;
+    background-color: #ddd;
+}
+
+footer p {
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+<body>
+{% load static %}
+    {% load static %}
+<nav>
+    <ul>
+        <li class="logo"><a href="{% url 'main' %}"><img src="{% static 'logo.png' %}" alt="logo"></a></li>
+        <li><a href="{% url 'event_list' %}">Event</a></li>
+        <li><a href="{% url 'dashboard' %}">Photographe</a></li>
+    </ul>
+    {% if user.is_authenticated %}
+        <div class="connected"><a href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a></div>
+    {% endif %}
+    <div class="panier"><a href="{% url 'view_cart' %}"><img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier"></a></div>
+</nav>
+
+    <div class="container">
+        <h1>Cart</h1>
+
+        {% if cart_items %}
+            <ul>
+                {% for item in cart_items %}
+                    <li>
+                        <img src="{{ item.photo.image_with_watermark.url }}" alt="Photo" class="scaled-image">
+                        <div class="product-details">
+                            {% for product_type in item.product_types %}
+                                <p>Qualité: {{ product_type.format }}</p>
+                                <p>Prix: {{ product_type.price }} €</p>
+                                <form action="{% url 'remove_from_cart' photo_id=item.photo.id product_type_id=product_type.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="remove">Remove</button>
+                                </form>
+                            {% endfor %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <form action="{% url 'place_order' %}" method="post">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit" class="place-order">Passer commande</button>
+            </form>
+            <form action="{% url 'clear_cart' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="remove">Clear Cart</button>
+            </form>
+        {% else %}
+            <p class="empty-cart">Your cart is empty.</p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

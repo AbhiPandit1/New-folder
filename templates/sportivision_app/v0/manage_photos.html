@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Photos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'dashboard' %}">Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">Retour au Dashboard</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a>
+            </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'view_cart' %}">
+                    <img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier" width="24" height="24">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Gestion des Photos pour {{ selected_event.title }}</h1>
+
+    <!-- Formulaire de sélection de l'événement -->
+<form method="get" action="{% url 'manage_photos' %}">
+    <div class="form-group">
+        <label for="eventSelect">Sélectionner un événement :</label>
+        <select id="eventSelect" name="event_id" class="form-control" onchange="this.form.submit()">
+            <option value="" disabled selected>Sélectionnez un événement</option> <!-- Option par défaut -->
+            {% for event in events %}
+                <option value="{{ event.id }}" {% if event == selected_event %}selected{% endif %}>
+                    {{ event.title }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+</form>
+
+    <!-- Formulaire pour changer le type de produit -->
+    <form method="POST" action="{% url 'change_product_type' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="productTypeSelect">Changer le type de produit :</label>
+            <select id="productTypeSelect" name="product_type" class="form-control">
+                {% for product_type in product_types %}
+                    <option value="{{ product_type.id }}">{{ product_type.name }} - {{ product_type.format }} (€{{ product_type.price }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="hidden" name="photos" id="selectedPhotosInput" value="">
+        <button type="submit" class="btn btn-primary">Appliquer le changement</button>
+    </form>
+
+
+<form id="deletePhotosForm" method="POST" action="{% url 'delete_selected_photos' %}">
+    {% csrf_token %}
+    <input type="hidden" name="photos" id="deleteSelectedPhotosInput" value=""> <!-- Nouveau champ caché pour suppression -->
+
+    <!-- Tableau des photos -->
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="selectAllPhotos"></th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Produits Types</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for photo in page_obj %}
+        {% if photo.image_with_watermark %}
+            <tr>
+                <td><input type="checkbox" class="photo-checkbox" value="{{ photo.id }}"></td>
+                <td>{{ photo.image_with_watermark.name }}</td>
+                <td><img src="{{ photo.image_with_watermark.url }}" alt="photo" width="100"></td>
+                <td>
+                    {% for product_type in photo.product_types.all %}
+                        {{ product_type.name }} - {{ product_type.format }}<br>
+                    {% empty %}
+                        Aucun type de produit
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</tbody>
+    </table>
+
+    <nav aria-label="Pagination">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_event %}&event_id={{ selected_event.id }}{% endif %}">Précédent</a></li>
+        {% endif %}
+
+        {% for page_num in page_obj.paginator.page_range %}
+        <li class="page-item {% if page_num == page_obj.number %}active{% endif %}">
+            <a class="page-link" href="?page={{ page_num }}{% if selected_event %}&event_id={{ selected_event.id }}{% endif %}">
+                {{ page_num }}
+            </a>
+        </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_event %}&event_id={{ selected_event.id }}{% endif %}">Suivant</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+    <!-- Bouton pour supprimer les photos sélectionnées -->
+    <button type="submit" class="btn btn-danger mt-3" onclick="submitDeletePhotos()">Supprimer les photos sélectionnées</button>
+</form>
+</body>
+<script>
+    // Script pour gérer la sélection des photos
+    const selectAllCheckbox = document.getElementById('selectAllPhotos');
+    const photoCheckboxes = document.querySelectorAll('.photo-checkbox');
+    const selectedPhotosInput = document.getElementById('selectedPhotosInput');
+    const deleteSelectedPhotosInput = document.getElementById('deleteSelectedPhotosInput'); // Nouveau champ pour suppression
+
+    selectAllCheckbox.addEventListener('change', function() {
+        photoCheckboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
+        updateSelectedPhotos();
+    });
+
+    photoCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateSelectedPhotos);
+    });
+
+    function updateSelectedPhotos() {
+        const selectedPhotos = Array.from(photoCheckboxes)
+                                    .filter(checkbox => checkbox.checked)
+                                    .map(checkbox => checkbox.value);
+        selectedPhotosInput.value = selectedPhotos.join(','); // Associe les photos sélectionnées pour changement de type
+        deleteSelectedPhotosInput.value = selectedPhotos.join(','); // Associe les photos sélectionnées pour suppression
+    }
+
+    function submitDeletePhotos() {
+        document.getElementById('deletePhotosForm').submit();
+    }
+</script>
+
+
+</html>

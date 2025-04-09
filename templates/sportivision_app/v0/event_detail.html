@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BSK93QXCPH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BSK93QXCPH');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ event.title }} - Trouvez vos photos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        body > nav > ul > li.logo > a > img {
+            height: auto;
+            width: 55px;
+        }
+
+        body > nav > div > a > img {
+            height: 30px;
+            width: auto;
+        }
+
+        h1 {
+            margin: 20px 0;
+            color: black;
+            text-align: center;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-form input[type="text"] {
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 14px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .photos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .photo {
+            position: relative;
+            width: calc(25% - 20px);
+            margin-bottom: 20px;
+            text-align: center;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .photo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo img {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .photo p.photographer-name {
+            margin-top: 10px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .photo-form {
+            margin-top: 10px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            width: 80%;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modalImage {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            margin: auto;
+            display: block;
+        }
+
+        .close {
+            color: #fff;
+            font-size: 30px;
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            cursor: pointer;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-decoration: none;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+
+        @media screen and (max-width: 768px) {
+            .photo {
+                width: calc(50% - 10px);
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+{% load static %}
+<nav>
+    <ul>
+        <li class="logo"><a href="#"><img src="{% static 'logo.png' %}" alt="logo"></a></li>
+        <li><a href="{% url 'event_list' %}">Event</a></li>
+        <li><a href="{% url 'dashboard' %}">Photographe</a></li>
+    </ul>
+    {% if user.is_authenticated %}
+        <div class="connected"><a href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a></div>
+    {% endif %}
+    <div class="panier"><a href="{% url 'view_cart' %}"><img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier"></a></div>
+</nav>
+<div class="container">
+    <h1>{{ event.title }}</h1>
+    <div class="filters">
+        <form method="get" action="{% url 'event_detail' event_id=event.id %}">
+            <label for="photographer">Photographer:</label>
+            <select name="photographer" id="photographer">
+                <option value="">All Photographers</option>
+                {% for photographer in unique_photographers %}
+                    <option value="{{ photographer.id }}" {% if selected_photographer == photographer.id %}selected{% endif %}>{{ photographer.username }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Filter</button>
+        </form>
+        <form method="get" action="{% url 'event_detail' event_id=event.id %}" class="search-form">
+            <input type="text" name="search" placeholder="Search your bib number" value="{{ search_query|default:'' }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="photos">
+        {% for photo in page_obj %}
+            <div class="photo">
+                <div class="photo-content">
+                    <img src="{{ photo.image_with_watermark.url }}" alt="Photo with Watermark">
+                    <form action="{% url 'add_to_cart' %}" method="post" class="photo-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="photo_id" value="{{ photo.id }}">
+                        <label for="product_type">Select Quality:</label>
+                        <select name="product_type" id="product_type">
+                            {% for product_type in photo.product_types.all %}
+                                <option value="{{ product_type.id }}">{{ product_type.format }} - {{ product_type.price }} €</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </div>
+                <p class="photographer-name">Photographer: {{ photo.photographer.username }}</p>
+            </div>
+        {% empty %}
+            <p>Search NC to see no detected photos. We didn't detect any photos of you. </p>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page=1{% if selected_photographer %}&photographer={{ selected_photographer }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">&laquo; First</a>
+        <a href="?page={{ page_obj.previous_page_number }}{% if selected_photographer %}&photographer={{ selected_photographer }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">&lsaquo; Previous</a>
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <a href="?page={{ num }}{% if selected_photographer %}&photographer={{ selected_photographer }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}" class="active">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a href="?page={{ num }}{% if selected_photographer %}&photographer={{ selected_photographer }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if selected_photographer %}&photographer={{ selected_photographer }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Next &rsaquo;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}{% if selected_photographer %}&photographer={{ selected_photographer }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Last &raquo;</a>
+    {% endif %}
+</div>
+
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modalImage" style="display: block; margin: auto; margin: 10px;">
+        <p id="modalFilename" style="display: none;" ></p>
+        <!-- Formulaire d'ajout au panier -->
+        <form id="modalPhotoForm" action="{% url 'add_to_cart' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="modalPhotoId" name="photo_id">
+            <label for="modalProductType" style="color: white;">Select Quality:</label>
+            <select name="product_type" id="modalProductType"></select>
+            <button type="submit">Add to Cart</button>
+            <p style="color: #adacac;">This is a reduced quality image, you will receive a higher quality image with your purchase.</p>
+        </form>
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+
+<script>
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("modalImage");
+    var modalFilename = document.getElementById("modalFilename");
+    var modalPhotoId = document.getElementById("modalPhotoId");
+    var modalProductType = document.getElementById("modalProductType");
+    var modalPhotoForm = document.getElementById("modalPhotoForm");
+    var images = document.querySelectorAll('.photo img');
+    var currentImageIndex;
+
+    window.onload = function() {
+        modal.style.display = "none";
+    }
+
+    images.forEach(function(image, index) {
+        image.onclick = function() {
+            var photo = image.closest('.photo');
+            var photoId = photo.querySelector('input[name="photo_id"]').value;
+            var productTypes = photo.querySelector('select[name="product_type"]').options;
+
+            modal.style.display = "flex";
+            modalImg.src = this.src;
+            modalFilename.textContent = this.alt;
+            modalPhotoId.value = photoId;
+
+            modalProductType.innerHTML = '';
+            for (var i = 0; i < productTypes.length; i++) {
+                var option = document.createElement('option');
+                option.value = productTypes[i].value;
+                option.textContent = productTypes[i].textContent;
+                modalProductType.appendChild(option);
+            }
+
+            currentImageIndex = index;
+        }
+    });
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    function plusSlides(n) {
+        currentImageIndex += n;
+        if (currentImageIndex >= images.length) {
+            currentImageIndex = 0;
+        }
+        if (currentImageIndex < 0) {
+            currentImageIndex = images.length - 1;
+        }
+        var nextPhoto = images[currentImageIndex].closest('.photo');
+        var nextPhotoId = nextPhoto.querySelector('input[name="photo_id"]').value;
+        var nextProductTypes = nextPhoto.querySelector('select[name="product_type"]').options;
+
+        modalImg.src = images[currentImageIndex].src;
+        modalFilename.textContent = images[currentImageIndex].alt;
+        modalPhotoId.value = nextPhotoId;
+
+        modalProductType.innerHTML = '';
+        for (var i = 0; i < nextProductTypes.length; i++) {
+            var option = document.createElement('option');
+            option.value = nextProductTypes[i].value;
+            option.textContent = nextProductTypes[i].textContent;
+            modalProductType.appendChild(option);
+        }
+    }
+
+</script>
+</body>
+</html>

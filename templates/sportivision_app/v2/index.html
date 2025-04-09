@@ -1,0 +1,19 @@
+{% extends "v2/base.html" %}
+
+{% block navbar %}
+    {% include "v2/navbar.html" %}
+{% endblock %}
+
+{
+{% block content %}
+    {% include "v2/slider.html" %}
+    {% include "v2/researchInput.html" %}
+    {% include "v2/eventcard.html" %}
+    
+    {% include "v2/about.html" %}
+    {% include "v2/contact.html" %}
+{% endblock %}
+
+{% block footer %}
+    {% include "v2/footer.html" %}
+{% endblock %}

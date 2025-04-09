@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+    <style>
+        body {
+            font-family: "Rubik", sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #333;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        nav {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 5px;
+            padding-right: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 10px;
+        }
+
+        nav li a {
+            color: #333;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        nav li a:hover {
+            background-color: #f4f7f6;
+            border-radius: 5px;
+        }
+
+        body > nav > ul > li.logo > a > img {
+            height: auto;
+            width: 55px;
+        }
+
+        body > nav > div > a > img {
+            height: 30px;
+            width: auto;
+        }
+
+        h2 {
+            margin-top: 80px; /* To offset the fixed navbar */
+            color: #333;
+            font-size: 2rem;
+        }
+
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 20px 0;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            color: #333;
+        }
+
+        p a {
+            color: #007bff;
+        }
+                footer {
+    text-align: center;
+    margin-top: 20px;
+
+    width: 100%;
+    background-color: #ddd;
+}
+
+footer p {
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+<body>
+    {% load static %}
+    <nav>
+        <ul>
+            <li class="logo"><a href="#"><img src="{% static 'logo.png' %}" alt="logo"></a></li>
+            <li><a href="{% url 'event_list' %}">Event</a></li>
+            <li><a href="{% url 'dashboard' %}">Photographe</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+            <div class="connected"><a href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a></div>
+        {% endif %}
+        <div class="panier"><a href="{% url 'view_cart' %}"><img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier"></a></div>
+    </nav>
+    <h2>Connexion</h2>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Affiche les champs du formulaire -->
+        <button type="submit">Se connecter</button> <!-- Bouton de soumission -->
+    </form>
+    <p>Pas encore de compte ? <a href="{% url 'signup' %}">Inscrivez-vous !</a></p>
+    <p>Mot de passe oublié ? <a href="{% url 'password_reset' %}">Réinitialisez !</a></p>
+
+</body>
+</html>

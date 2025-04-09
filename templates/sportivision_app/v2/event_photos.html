@@ -1,0 +1,215 @@
+{% block content %}
+<div class="bg-[#0f172a] py-12 px-4">
+    <div class="max-w-7xl mx-auto">
+        <!-- Photo Grid -->
+        <div id="photoGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+            {% for photo in photos %}
+            <!-- Single Photo Card Start -->
+            <div class="photo-card bg-[#1e293b] rounded-2xl shadow-lg transform transition-transform duration-500
+               hover:scale-[1.02] hover:shadow-blue-500/40">
+                <!-- Image (Click to open modal) -->
+                <img src="{{ photo.image_with_watermark.url }}" alt="{{ photo.title|default:'Photo' }}"
+                    class="w-full h-48 object-cover rounded-t-xl cursor-pointer" onclick="openPhotoModal({
+            imageSrc: '{{ photo.image_with_watermark.url }}',
+            photographerName: '{{ photo.photographer.username }}',
+            photoId: '{{ photo.id }}',
+            productTypes: [
+              {% for pt in photo.product_types.all %}
+                { id: '{{ pt.id }}', format: '{{ pt.format }}', price: '{{ pt.price }}' },
+              {% endfor %}
+            ]
+          })" />
+
+                <!-- Content Box -->
+                <div class="relative p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-b-xl
+                    flex flex-col justify-between min-h-[140px]">
+                    <!-- Photo Info -->
+                    <div class="space-y-3">
+                        <p class="text-sm text-gray-300">
+                            Photographer: {{ photo.photographer.username }}
+                        </p>
+
+                        <!-- (Optional) We keep the form here if you want it in the card as well 
+                 or remove it if you only want the form in the modal -->
+                        <form action="{% url 'add_to_cart' %}" method="post" class="photo-form space-y-3">
+                            {% csrf_token %}
+                            <input type="hidden" name="photo_id" value="{{ photo.id }}">
+
+                            <label for="product_type_{{ photo.id }}" class="block text-gray-400 text-sm font-medium">
+                                Select Quality:
+                            </label>
+                            <select name="product_type" id="product_type_{{ photo.id }}" class="w-full px-3 py-2 text-gray-900 rounded focus:outline-none
+                       focus:ring-2 focus:ring-blue-500 border border-gray-300">
+                                {% for product_type in photo.product_types.all %}
+                                <option value="{{ product_type.id }}">
+                                    {{ product_type.format }} - {{ product_type.price }} €
+                                </option>
+                                {% endfor %}
+                            </select>
+
+                            <button type="submit" class="inline-block bg-black hover:bg-[#1e293b] text-white font-semibold
+                       py-3 px-8 rounded-full shadow-lg transition-transform
+                       hover:scale-105 duration-300 w-full">
+                                Add to Cart
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Single Photo Card End -->
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Pagination Links -->
+        <div class="flex flex-wrap items-center justify-center gap-2 mt-6">
+
+            <!-- Previous Page Link -->
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="inline-block bg-black hover:bg-[#1e293b] text-white font-semibold
+               py-2 px-4 rounded-md shadow-md transition duration-300">
+                « Previous
+            </a>
+            {% else %}
+            <span class="inline-block bg-gray-700 text-gray-400 font-semibold
+               py-2 px-4 rounded-md shadow-md cursor-not-allowed">
+                « Previous
+            </span>
+            {% endif %}
+
+            <!-- Page Number Links -->
+            {% for page_num in page_obj.paginator.page_range %}
+            {% if page_num == page_obj.number %}
+            <!-- Active Page -->
+            <span class="inline-block bg-[#1e293b] text-white font-bold
+                 py-2 px-4 rounded-md shadow-md">
+                {{ page_num }}
+            </span>
+            {% else %}
+            <!-- Inactive Page -->
+            <a href="?page={{ page_num }}" class="inline-block bg-black hover:bg-[#1e293b] text-white
+                 font-semibold py-2 px-4 rounded-md shadow-md
+                 transition duration-300">
+                {{ page_num }}
+            </a>
+            {% endif %}
+            {% endfor %}
+
+            <!-- Next Page Link -->
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="inline-block bg-black hover:bg-[#1e293b] text-white font-semibold
+               py-2 px-4 rounded-md shadow-md transition duration-300">
+                Next »
+            </a>
+            {% else %}
+            <span class="inline-block bg-gray-700 text-gray-400 font-semibold
+               py-2 px-4 rounded-md shadow-md cursor-not-allowed">
+                Next »
+            </span>
+            {% endif %}
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Large Photo Modal (Hidden by default) -->
+
+<div id="photoModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 hidden p-4">
+    <!-- Modal container with max width -->
+    <div class="bg-[#1e293b] w-full max-w-7xl rounded-xl shadow-lg p-6 relative">
+
+        <!-- Close button -->
+        <button id="closeModalBtn" class="absolute top-4 right-4 text-white hover:text-gray-300 text-2xl font-bold">
+            ✕
+        </button>
+
+        <!-- Responsive layout for image + form -->
+        <div class="flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6">
+
+            <!-- Large Image -->
+            <img id="modalPhotoImage" src="" alt="Large Photo" class="rounded bg-black
+               w-full h-auto
+               lg:w-[90vw] lg:h-[90vh]
+               object-contain" />
+
+            <!-- Info & Add-to-Cart Form (optional side-by-side on lg) -->
+            <div class="flex-grow flex flex-col justify-between text-white">
+                <!-- Photographer Info -->
+                <p id="modalPhotographer" class="text-sm mb-4"></p>
+
+                <!-- Add to Cart Form -->
+                <form id="modalAddToCartForm" action="{% url 'add_to_cart' %}" method="post" class="space-y-3">
+                    {% csrf_token %}
+                    <input type="hidden" name="photo_id" id="modalPhotoId" value="">
+
+                    <label for="modalProductType" class="block text-gray-400 text-sm font-medium">
+                        Select Quality:
+                    </label>
+
+                    <select name="product_type" id="modalProductType" class="w-full px-3 py-2 text-gray-900 rounded focus:outline-none
+                   focus:ring-2 focus:ring-blue-500 border border-gray-300">
+                        <!-- Options will be populated via JavaScript -->
+                    </select>
+
+                    <button type="submit" class="inline-block bg-black hover:bg-[#334155] text-white font-semibold
+                   py-3 px-8 rounded-full shadow-lg transition-transform
+                   hover:scale-105 duration-300 w-full">
+                        Add to Cart
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+
+    // 2) Modal Logic
+    const photoModal = document.getElementById('photoModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalPhotoImage = document.getElementById('modalPhotoImage');
+    const modalPhotographer = document.getElementById('modalPhotographer');
+    const modalPhotoId = document.getElementById('modalPhotoId');
+    const modalProductType = document.getElementById('modalProductType');
+
+    // Function to open the modal
+    function openPhotoModal({ imageSrc, photographerName, photoId, productTypes }) {
+        // Fill in the large image
+        modalPhotoImage.src = imageSrc;
+
+        // Photographer info
+        modalPhotographer.textContent = `Photographer: ${photographerName}`;
+
+        // Photo ID for Add to Cart
+        modalPhotoId.value = photoId;
+
+        // Rebuild the <select> options
+        modalProductType.innerHTML = '';
+        productTypes.forEach(pt => {
+            const opt = document.createElement('option');
+            opt.value = pt.id;
+            opt.textContent = `${pt.format} - ${pt.price} €`;
+            modalProductType.appendChild(opt);
+        });
+
+        // Show the modal
+        photoModal.classList.remove('hidden');
+    }
+
+    // Attach to window so we can call it inline in the HTML
+    window.openPhotoModal = openPhotoModal;
+
+    // Close button
+    closeModalBtn.addEventListener('click', () => {
+        photoModal.classList.add('hidden');
+    });
+</script>
+{% endblock %}

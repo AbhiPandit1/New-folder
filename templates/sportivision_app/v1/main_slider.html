@@ -1,0 +1,67 @@
+{% block main_slider %}
+<div class="main">
+    <div class="banner-area home-banner1">
+        <div class="banner-slider banner-slider1">
+            {% for slider in sliders %}
+            <div class="banner-bg" style="background-image: url('{{ slider.image.url }}')">
+                <div class="container">
+                    <div class="row h-100vh">
+                        <div class="col-xl-10 col-lg-10 offset-lg-2 offset-xl-1 col-md-8 offset-md-2">
+                            <div class="banner-inner">
+                                <p data-animation-in="fadeInLeft">
+                                    {{ slider.description|default:"Experience the thrill of the ride." }}
+                                </p>
+                                <h1 class="title1" data-animation-in="fadeInDown">
+                                    {{ slider.title|default:"Adventure" }}
+                                </h1>
+                                <h1 class="title2" data-animation-in="fadeInUp">
+                                    Ride On
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Button for Gallery with animation -->
+    <div class="scroll">
+        <a href="/gallery/">
+        <div class="scroll-btn">
+            <span class="inside-bg"></span>
+        </div>
+        </a>
+        <span>View Gallery</span>
+    </div>
+  
+
+       
+
+        <!-- Arrows -->
+        <div class="banner-sm-slider"></div>
+        <div class="slick-carousel-buttons">
+            <div class="mid">
+                <button class="prev">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="next">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+     <!-- Optional: Sponsor Slider -->
+     <div class="slider ">
+        <div class="slide-track" id="sponsorTrack">
+            {% for sponsor in sponsors %}
+            <div class="slide">
+                <a href="{{ sponsor.website }}" target="_blank">
+                    <img src="{{ sponsor.logo.url }}" alt="{{ sponsor.name }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

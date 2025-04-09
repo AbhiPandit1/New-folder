@@ -1,0 +1,111 @@
+{% block navbar %}
+{% load cart_tags %}
+<!-- components/navbar.html -->
+<nav class="bg-dark py-4 shadow-lg relative z-50">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="{% url 'main' %}"
+      class="text-2xl font-bold tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-[#ff5733] via-[#ff6f61] via-[#ffb300] to-[#ffc107]">
+      SportiVision
+    </a>
+
+    <!-- Hamburger -->
+    <button id="menu-btn" class="lg:hidden text-white text-3xl z-50">☰</button>
+
+    <!-- Mobile Menu -->
+    <div id="menu"
+      class="bg-dark gsap-hidden lg:flex lg:items-center lg:gap-6 flex-col lg:flex-row absolute lg:static top-[100%] left-0 w-full lg:w-auto px-6 lg:px-0 py-6 lg:py-0 space-y-6 lg:space-y-0 transition-all duration-300">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:gap-6 text-center w-full">
+        <!-- Nav Links -->
+        <a href="{% url 'main' %}"
+          class="nav-link relative text-white text-lg font-medium transition duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#ff5733] hover:via-[#ff6f61] hover:via-[#ffb300] hover:to-[#ffc107] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 hover:after:w-full after:bg-gradient-to-r after:from-[#ff5733] after:via-[#ff6f61] after:via-[#ffb300] after:to-[#ffc107] after:transition-all after:duration-300">Home</a>
+        <a href="#"
+          class="nav-link relative text-white text-lg font-medium transition duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#ff5733] hover:via-[#ff6f61] hover:via-[#ffb300] hover:to-[#ffc107] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 hover:after:w-full after:bg-gradient-to-r after:from-[#ff5733] after:via-[#ff6f61] after:via-[#ffb300] after:to-[#ffc107] after:transition-all after:duration-300">About</a>
+        <a href="#"
+          class="nav-link relative text-white text-lg font-medium transition duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#ff5733] hover:via-[#ff6f61] hover:via-[#ffb300] hover:to-[#ffc107] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-[2px] after:w-0 hover:after:w-full after:bg-gradient-to-r after:from-[#ff5733] after:via-[#ff6f61] after:via-[#ffb300] after:to-[#ffc107] after:transition-all after:duration-300">Events</a>
+      </div>
+
+      <hr class="lg:hidden border-gray-600 w-full my-4" />
+
+      <!-- Mobile User Info -->
+      <div class="flex justify-between items-center w-full px-2 lg:hidden">
+        <a href="{% url 'view_cart' %}" class="relative">
+          <!-- Cart Icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3H19m-7 0a2 2 0 11-4 0m10 0a2 2 0 11-4 0" />
+          </svg>
+          {% get_cart_count as cart_count %}
+          {% if cart_count > 0 %}
+          <span class="absolute -top-2 -right-2 bg-red-600 text-xs text-white rounded-full w-5 h-5 flex items-center justify-center">{{cart_count }}</span>
+          {% endif %}
+          
+        </a>
+
+        <!-- User Dropdown Mobile -->
+        <div class="relative">
+          {% if user.is_authenticated %}
+          <button id="user-btn-mobile" class="text-white font-bold text-lg hover:text-white flex items-center gap-1">
+            {{ user.username }}
+            <span>▼</span>
+          </button>
+          
+          {% else %}
+            <!-- Sign In Link for Unauthenticated Visitors -->
+            <a href="{% url 'login' %}" class="text-white font-bold text-lg hover:text-white px-4 py-2 bg-blue-600 rounded-md">
+              Sign In
+            </a>
+          {% endif %}
+          <div id="dropdown-mobile"
+            class="absolute right-0 mt-2 bg-white text-gray-800 rounded-lg shadow-xl w-44 p-2 space-y-1 border border-gray-100 z-50 hidden transition-all duration-200 ease-out transform scale-95">
+            <a href="{% url 'dashboard' %}" class="block px-4 py-2 rounded hover:bg-gray-100 transition">📋
+              Dashboard</a>
+            <a href="{% url 'logout' %}" class="block px-4 py-2 rounded hover:bg-red-100 text-red-600 transition">🚪
+              Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Icons & User -->
+    <div class="hidden lg:flex items-center gap-6">
+      <!-- Cart -->
+      <a href="{% url 'view_cart' %}" class="relative">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3H19m-7 0a2 2 0 11-4 0m10 0a2 2 0 11-4 0" />
+        </svg>
+        {% get_cart_count as cart_count %}
+        {% if cart_count > 0 %}
+        <span class="absolute -top-2 -right-2 bg-red-600 text-xs text-white rounded-full w-5 h-5 flex items-center justify-center">{{cart_count }}</span>
+        {% endif %}
+
+      </a>
+
+      <!-- User Dropdown Desktop -->
+      <div class="relative">
+        {% if user.is_authenticated %}
+        <button id="user-btn" class="text-white font-bold text-lg hover:text-white flex items-center gap-1">
+          {{ user.username }}
+          <span>▼</span>
+        </button>
+        {% else %}
+          <!-- Sign In Link for Unauthenticated Visitors -->
+          <a href="{% url 'login' %}" class="text-white font-bold text-lg hover:text-white px-4 py-2 bg-blue-600 rounded-md">
+            Sign In
+          </a>
+        {% endif %}
+        <div id="dropdown"
+          class="absolute right-0 mt-2 bg-white text-gray-800 rounded-lg shadow-xl w-44 p-2 space-y-1 border border-gray-100 z-50 hidden transition-all duration-200 ease-out transform scale-95">
+          <a href="{% url 'dashboard' %}" class="block px-4 py-2 rounded hover:bg-gray-100 transition">📋 Dashboard</a>
+          <a href="{% url 'logout' %}" class="block px-4 py-2 rounded hover:bg-red-100 text-red-600 transition">🚪 Sign
+            Out</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}

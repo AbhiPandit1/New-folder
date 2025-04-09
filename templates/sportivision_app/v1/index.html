@@ -1,0 +1,17 @@
+{% extends "v1/base.html" %}
+
+{% block navbar %}
+    {% include "v1/navbar.html" %}
+{% endblock %}
+
+{
+{% block content %}
+    {% include "v1/main_slider.html" %}
+    {% include "v1/events_list.html" %}
+    {% include "v1/pricing.html" %}
+    {% include "v1/contact_us.html" %}
+{% endblock %}
+
+{% block footer %}
+    {% include "v1/footer.html" %}
+{% endblock %}

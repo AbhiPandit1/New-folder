@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter des photos à un événement</title>
+    <style>
+        .loader-container {
+            display: inline-block;
+            position: relative;
+            width: auto;
+            height: auto;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .loader {
+            border: 2px solid #3498db;
+            border-radius: 50%;
+            border-top: 2px solid #f3f3f3;
+            width: 1em;
+            height: 1em;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        body {
+            font-family: "Rubik", sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            margin-top: 100px;
+            color: #333;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+        }
+        form p {
+            margin-bottom: 15px;
+        }
+        input[type="text"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            color: #333;
+            text-align: center;
+        }
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        p a:hover {
+            text-decoration: underline;
+        }
+        nav {
+            width: 100%;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #23bae8;
+        }
+        nav .connected {
+            margin-right: 20px;
+            font-size: 16px;
+        }
+        nav .connected a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        nav .connected a:hover {
+            color: #23bae8;
+        }
+        nav .panier {
+            font-size: 16px;
+        }
+        nav .panier a {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        nav .panier a:hover {
+            transform: scale(1.1);
+        }
+        nav .panier img {
+            width: 24px;
+            height: 24px;
+            margin-left: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            background-color: #ddd;
+        }
+        footer p {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'dashboard' %}">Retour au Dashboard</a></li>
+        </ul>
+        {% if user.is_authenticated %}
+            <div class="connected"><a href="{% url 'dashboard' %}">Connecté en tant que: {{ user.username }}</a></div>
+        {% endif %}
+        <div class="panier"><a href="{% url 'view_cart' %}"><img src="https://cdn1.iconfinder.com/data/icons/bootstrap/16/cart-512.png" alt="panier"></a></div>
+    </nav>
+    <h1>Ajouter des photos à un événement</h1>
+    <div id="loader" class="loader" style="display: none;"></div>
+    <div id="loadingMessage" style="display: none;">Attendez la fin du chargement. Ne quittez pas cette page.</div>
+    <div id="completedMessage" style="display: none;">Chargement terminé.</div> <!-- Message de fin -->
+
+    <form id="uploadForm" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <h3>Produits Types:</h3>
+        {% for product_type in product_types %}
+            <label>
+                <input type="checkbox" name="product_types" value="{{ product_type.id }}">
+                {{ product_type }}
+            </label><br>
+        {% endfor %}
+        <input type="file" id="fileInput" name="images" accept="image/jpeg" multiple>
+        <p>Uniquement .jpg, Max. 5Mo par fichier, Max. 500 fichiers.</p>
+        <button id="submitBtn" type="submit">Télécharger les photos</button>
+    </form>
+
+    <footer>
+        <p>Copyright Sportivision &copy; 2024</p>
+    </footer>
+
+    <script>
+        document.getElementById('uploadForm').onsubmit = async function(event) {
+            event.preventDefault();
+
+            let formIsValid = true;
+            let errorMessage = "";
+
+            // Validation de l'événement
+            const eventSelect = document.querySelector('select[name="event"]');
+            if (!eventSelect || !eventSelect.value) {
+                formIsValid = false;
+                errorMessage += "Veuillez sélectionner un événement.\n";
+            }
+
+            // Validation des fichiers
+            const imageInput = document.getElementById('fileInput');
+            const files = imageInput.files;
+
+            if (files.length === 0) {
+                formIsValid = false;
+                errorMessage += "Vous devez sélectionner au moins une image.\n";
+            } else if (files.length > 500) {
+                formIsValid = false;
+                errorMessage += "Vous ne pouvez pas télécharger plus de 500 fichiers à la fois.\n";
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                if (!file.name.toLowerCase().endsWith('.jpg')) {
+                    formIsValid = false;
+                    errorMessage += `Le fichier ${file.name} doit être au format .jpg.\n`;
+                }
+                if (file.size > 6 * 1024 * 1024) {  // 6Mo en octets
+                    formIsValid = false;
+                    errorMessage += `Le fichier ${file.name} dépasse la taille maximale de 5Mo.\n`;
+                }
+            }
+
+            // Validation des types de produits sélectionnés
+            const productTypeInputs = document.querySelectorAll('input[name="product_types"]:checked');
+            if (productTypeInputs.length === 0) {
+                formIsValid = false;
+                errorMessage += "Vous devez sélectionner au moins un type de produit.\n";
+            }
+
+            // Affichage des erreurs ou soumission du formulaire
+            if (!formIsValid) {
+                alert(errorMessage);
+                return;
+            }
+
+            // Affichage du loader et du message de chargement
+            const loader = document.getElementById('loader');
+            const loadingMessage = document.getElementById('loadingMessage');
+            const completedMessage = document.getElementById('completedMessage');
+
+            loader.style.display = 'inline-block';
+            loadingMessage.style.display = 'block';
+            document.getElementById('submitBtn').disabled = true;
+
+            // Soumission du formulaire pour obtenir les URLs signées
+            const formData = new FormData();
+            formData.append('event', eventSelect.value);
+
+            // Ajout des noms de fichiers dans formData
+            for (let i = 0; i < files.length; i++) {
+                formData.append('file_names', files[i].name);
+            }
+
+            // Ajout des types de produits sélectionnés au formData
+            productTypeInputs.forEach(input => {
+                formData.append('product_types', input.value);
+            });
+
+            const response = await fetch("{% url 'add_photos_to_event' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const signedUrls = data.signed_urls;
+
+                // Upload des fichiers directement vers les URLs signées
+                for (let i = 0; i < signedUrls.length; i++) {
+                    const file = files[i];
+                    const signedUrl = signedUrls[i].signed_url;
+
+                    await uploadFileToSignedUrl(file, signedUrl);
+                }
+
+                // Démarrer le polling pour le statut de traitement
+                pollProcessingStatus();
+            } else {
+                console.error('Erreur lors de la soumission:', response.status, response.statusText);
+                alert('Une erreur est survenue lors du téléchargement des photos.');
+                loader.style.display = 'none';
+                loadingMessage.style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        };
+
+        async function uploadFileToSignedUrl(file, signedUrl) {
+            try {
+                const response = await fetch(signedUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': file.type
+                    },
+                    body: file
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erreur lors de l'upload du fichier ${file.name}: ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert(`Une erreur est survenue lors de l'upload du fichier ${file.name}`);
+            }
+        }
+
+        async function pollProcessingStatus() {
+            const pollInterval = 2000;  // 2 secondes
+
+            const pollProcessingStatus = async () => {
+                const statusResponse = await fetch("{% url 'check_processing_status' %}");
+                const statusData = await statusResponse.json();
+                const progress = statusData.progress;
+
+                if (statusData.processing_complete) {
+                    document.getElementById('loadingMessage').style.display = 'none';
+                    document.getElementById('loader').style.display = 'none';
+                    document.getElementById('completedMessage').style.display = 'block';
+                    document.getElementById('submitBtn').disabled = false;
+                } else {
+                    document.getElementById('loadingMessage').textContent = `Chargement en cours : ${progress.toFixed(2)}% terminé.`;
+                    setTimeout(pollProcessingStatus, pollInterval);
+                }
+            };
+
+            pollProcessingStatus();
+        }
+    </script>
+</body>
+

@@ -1,0 +1,50 @@
+{% block content %}
+<!-- components/slider.html -->
+<div class="relative overflow-hidden" id="hero-section">
+  <div id="slider" class="relative h-[85vh]">
+    {% for event in sliders %}
+    <!-- ONE container (.slide) per event -->
+    <div class="slide absolute inset-0 bg-cover bg-center flex items-center justify-center text-white
+             opacity-100 transition-opacity duration-1000 h-[90vh]"
+      style="background-image: url('{{ event.cover.url }}')">
+      <!-- Dark overlay -->
+      <div class="absolute inset-0 bg-black/40 z-0"></div>
+
+      <!-- Slide text/content -->
+      <div class="relative text-center space-y-2 px-4 z-10 carousel-text">
+        <a href="{% url 'event_detail' event_id=event.id %}">
+          <h1 class="text-5xl md:text-6xl font-extrabold text-yellow-300 ">
+            {{ event.title }}
+          </h1>
+        </a>
+        <h2 class="text-3xl md:text-4xl font-semibold text-accent">
+          {{ event.formatted_date }}
+        </h2>
+        <p class="text-lg md:text-xl text-white font-medium">
+          {{ event.location }}
+        </p>
+      </div>
+
+      <!-- Unique "View Gallery" button for this slide/event -->
+      <div class="view-gallery-container absolute z-10">
+        <a href="{% url 'event_detail' event_id=event.id %}" class="view-gallery-button">
+          View Gallery
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Same custom nav buttons (unchanged) -->
+  <div class="slick-carousel-buttons">
+    <div class="mid">
+      <button id="prevBtn" class="prev">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button id="nextBtn" class="next">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}

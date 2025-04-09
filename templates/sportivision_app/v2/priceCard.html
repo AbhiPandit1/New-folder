@@ -1,0 +1,82 @@
+
+{% block content %}
+<section class="py-20 px-4 bg-[#0f172a] text-white font-sans">
+    <!-- Hero -->
+    <div class="text-center mb-14">
+      <h1 class="text-4xl font-bold mb-2">Simple, Transparent Pricing</h1>
+      <p class="text-gray-400 text-lg">No contracts. No surprise fees.</p>
+    </div>
+  
+    <!-- Cards -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Free Plan -->
+      <div class="bg-[#1e293b] rounded-2xl p-8 shadow-lg transform transition-transform duration-500 hover:rotate-[-3deg] hover:scale-[1.02] hover:shadow-blue-500/40"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-blue-500 rounded-full"></div>
+          <h2 class="text-2xl font-semibold">Free</h2>
+        </div>
+        <p class="text-gray-400 mb-6">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        </p>
+        <div class="text-3xl font-bold mb-4">$0 <span class="text-base text-gray-400">/ month</span></div>
+        <ul class="space-y-2 mb-6 text-sm text-gray-300">
+          <li>✓ 2 links</li>
+          <li>✓ Own analytics platform</li>
+          <li>✓ Chat support</li>
+          <li class="opacity-50 line-through">Mobile application</li>
+          <li class="opacity-50 line-through">Unlimited users</li>
+        </ul>
+        <button class="w-full py-2 bg-blue-600 rounded-xl hover:bg-blue-700 transition">Get Started</button>
+      </div>
+  
+      <!-- Pro Plan -->
+      <div
+        class="bg-[#1e293b] rounded-2xl p-8 shadow-lg transform transition-transform duration-500 hover:rotate-[-3deg] hover:scale-[1.02] hover:shadow-purple-500/40"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-purple-500 rounded-full"></div>
+          <h2 class="text-2xl font-semibold">Pro</h2>
+          <span class="text-xs bg-purple-600 px-2 py-1 rounded-lg">Best Value</span>
+        </div>
+        <p class="text-gray-400 mb-6">
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        </p>
+        <div class="text-3xl font-bold mb-4">$18 <span class="text-base text-gray-400">/ month</span></div>
+        <ul class="space-y-2 mb-6 text-sm text-gray-300">
+          <li>✓ 2 links</li>
+          <li>✓ Own analytics platform</li>
+          <li>✓ Chat support</li>
+          <li class="opacity-50 line-through">Mobile application</li>
+          <li class="opacity-50 line-through">Unlimited users</li>
+        </ul>
+        <button class="w-full py-2 bg-purple-600 rounded-xl hover:bg-purple-700 transition">Get Started</button>
+      </div>
+  
+      <!-- Enterprise Plan -->
+      <div
+        class="bg-[#1e293b] rounded-2xl p-8 shadow-lg transform transition-transform duration-500 hover:rotate-[-3deg] hover:scale-[1.02] hover:shadow-green-500/40"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-12 h-12 bg-green-500 rounded-full"></div>
+          <h2 class="text-2xl font-semibold">Enterprise</h2>
+        </div>
+        <p class="text-gray-400 mb-6">
+          Nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        </p>
+        <div class="text-3xl font-bold mb-4">Let's Talk</div>
+        <ul class="space-y-2 mb-6 text-sm text-gray-300">
+          <li>✓ 2 links</li>
+          <li>✓ Own analytics platform</li>
+          <li>✓ Chat support</li>
+          <li>✓ Mobile application</li>
+          <li>✓ Unlimited users</li>
+          <li>✓ Customize Panel</li>
+        </ul>
+        <button class="w-full py-2 bg-green-600 rounded-xl hover:bg-green-700 transition">Get Started</button>
+      </div>
+  
+    </div>
+  </section>
+{% endblock %}

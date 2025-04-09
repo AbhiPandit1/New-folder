@@ -1,0 +1,41 @@
+{% extends "v2/dashboard.html" %}
+{% block dashboard_content %}
+<div class="flex items-center justify-center">
+  <!-- Card Container -->
+  <div class="p-[2px] bg-gradient-to-r from-[#ff5733] via-[#ff6f61] to-[#ffc107] rounded-2xl w-full max-w-md">
+    <div class="shadow-lg rounded-2xl overflow-hidden bg-dark animate-fade-in">
+      <div class="p-10">
+        <h2 class="text-3xl font-bold mb-4 text-center">Personnaliser le filigrane</h2>
+        <form method="post" enctype="multipart/form-data" id="watermark-form" class="space-y-5">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="w-full mt-4 py-2 rounded-lg bg-gradient-to-r from-[#ff5733] via-[#ff6f61] to-[#ffc107] text-white font-bold transition-transform duration-300 transform hover:scale-105">
+            Enregistrer
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+{% block dashboard_content_small %}
+<div class="flex items-center justify-center">
+  <!-- Card Container -->
+  <div class="p-[2px] bg-gradient-to-r from-[#ff5733] via-[#ff6f61] to-[#ffc107] rounded-2xl w-full max-w-md">
+    <div class="shadow-lg rounded-2xl overflow-hidden bg-dark animate-fade-in">
+      <div class="p-10">
+        <h2 class="text-3xl font-bold mb-4 text-center">Personnaliser le filigrane</h2>
+        <form method="post" enctype="multipart/form-data" id="watermark-form" class="space-y-5">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="w-full mt-4 py-2 rounded-lg bg-gradient-to-r from-[#ff5733] via-[#ff6f61] to-[#ffc107] text-white font-bold transition-transform duration-300 transform hover:scale-105">
+            Enregistrer
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
